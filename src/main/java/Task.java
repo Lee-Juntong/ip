@@ -23,6 +23,7 @@ public class Task {
     public static void printTaskList(Task[] tasks) {
         int numPrintedTasks = 0;
         System.out.println("____________________________________________________________");
+        System.out.println(" Here are the tasks in your list:");
         for (Task task : tasks) {
             if (task == null) {
                 break;
