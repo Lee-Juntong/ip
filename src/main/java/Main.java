@@ -6,13 +6,14 @@ public class Main {
     public static final String EXIT = "bye";
     public static final String PRINT_TASK_LIST = "list";
     public static final String TASK_DONE = "done";
+    public static final String ADD_EVENT = "event";
+    public static final String ADD_DEADLINE = "deadline";
+    public static final String ADD_TODO = "todo";
 
 
     public static void main(String[] args) {
 
-        System.out.println("____________________________________________________________");
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+        printGreetingMessage();
 
         Scanner in = new Scanner(System.in);
         Task[] tasks = new Task[MAX_TASK_CAPACITY];
@@ -21,7 +22,6 @@ public class Main {
 
         while (true) {
             command = in.nextLine();
-            String[] words = command.split(" ");
 
             if (command.equals(EXIT)) {
                 break;
@@ -31,17 +31,33 @@ public class Main {
             }
             //the above are single word command
 
-            if (words[0].equals(TASK_DONE)) {
-                tasks[Integer.parseInt(words[1]) - 1].markAsDone();
-            } else {
-                numTask = addTask(words[0], tasks, command, numTask);
-            }
+            numTask = respondMultiWordCommand(tasks, command, numTask);
         }
 
 
+        printExitMessage();
+    }
+
+    private static int respondMultiWordCommand(Task[] tasks, String command, int numTask) {
+        String[] words = command.split(" ");
+        if (words[0].equals(TASK_DONE)) {
+            tasks[Integer.parseInt(words[1]) - 1].markAsDone();
+        } else {
+            numTask = addTask(words[0], tasks, command, numTask);
+        }
+        return numTask;
+    }
+
+    private static void printExitMessage() {
         System.out.println("____________________________________________________________");
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
+    }
+
+    private static void printGreetingMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Hello! I'm Duke");
+        System.out.println("What can I do for you?");
     }
 
     private static int addTask(String beginning, Task[] tasks, String command, int numTask) {
@@ -49,15 +65,15 @@ public class Main {
         int dividerPosition;
         System.out.println("Got it. I've added this task: ");
         switch (beginning) {
-            case "event":
+            case ADD_EVENT:
                 dividerPosition = command.indexOf("/at");
                 tasks[numTask] = new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4));
                 break;
-            case "deadline":
+            case ADD_DEADLINE:
                 dividerPosition = command.indexOf("/by");
                 tasks[numTask] = new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4));
                 break;
-            case "todo":
+            case ADD_TODO:
                 tasks[numTask] = new Todo(command.substring(5));
                 break;
             default:
