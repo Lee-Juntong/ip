@@ -11,7 +11,8 @@ public class Task {
         this.isDone = true;
         System.out.println("____________________________________________________________");
         System.out.println("Nice! I've marked this task as done: ");
-        System.out.println("[" + this.getStatusIcon() + "]" + this.description);
+        System.out.println(toString());
+        System.out.println("____________________________________________________________");
     }
 
     public String getStatusIcon() {
@@ -27,10 +28,14 @@ public class Task {
                 break;
             }
             numPrintedTasks++;
-            System.out.println(numPrintedTasks + ". [" + task.getStatusIcon() + "]" + task.description);
+            System.out.println(numPrintedTasks + ". " + task.toString());
 
         }
         System.out.println("____________________________________________________________");
+    }
+
+    public String toString() {
+        return "[" + getStatusIcon() + "]" + description;
     }
 }
 
