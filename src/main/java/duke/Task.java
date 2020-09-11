@@ -1,3 +1,5 @@
+package duke;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -9,9 +11,13 @@ public class Task {
 
     public void markAsDone() {
         this.isDone = true;
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Nice! I've marked this task as done: ");
         System.out.println(toString());
+        printLine();
+    }
+
+    private static void printLine() {
         System.out.println("____________________________________________________________");
     }
 
@@ -22,7 +28,7 @@ public class Task {
 
     public static void printTaskList(Task[] tasks) {
         int numPrintedTasks = 0;
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println(" Here are the tasks in your list:");
         for (Task task : tasks) {
             if (task == null) {
@@ -32,7 +38,7 @@ public class Task {
             System.out.println(numPrintedTasks + ". " + task.toString());
 
         }
-        System.out.println("____________________________________________________________");
+        printLine();
     }
 
     public String toString() {
