@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class WrongCommandException extends NonCommandException{
+public class WrongCommandException extends InvalidCommandException {
 }

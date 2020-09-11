@@ -2,9 +2,7 @@ package duke;
 
 import java.util.Scanner;
 
-import duke.exception.NonCommandException;
-import duke.exception.TodoException;
-import duke.exception.WrongCommandException;
+import duke.exception.*;
 
 public class Main {
     public static final int MAX_TASK_CAPACITY = 100;
@@ -46,7 +44,7 @@ public class Main {
         printExitMessage();
     }
 
-    private static int respondMultiWordCommand(Task[] tasks, String command, int numTask)  {
+    private static int respondMultiWordCommand(Task[] tasks, String command, int numTask) {
         String[] words = command.split(" ");
         if (words[0].equals(TASK_DONE)) {
             tasks[Integer.parseInt(words[1]) - 1].markAsDone();
@@ -58,8 +56,22 @@ public class Main {
                 printLine();
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 printLine();
-            } catch (TodoException e){
+            } catch (EmptyTodoException e) {
                 System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+            } catch (EmptyDeadlineException e) {
+                System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+            } catch (NoDeadlineTimeMarkerException e) {
+                System.out.println("☹ OOPS!!! You should mark the time for a deadline with \"/by\"");
+            } catch (NoDeadlineTimeException e) {
+                System.out.println("☹ OOPS!!! You should enter a time for deadline.");
+            } catch (EmptyEventException e) {
+                System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
+            } catch (NoEventTimeMakerException e) {
+                System.out.println("☹ OOPS!!! You should mark the time for an event with \"/at\"");
+            } catch (NoEventTimeException e) {
+                System.out.println("☹ OOPS!!! You should enter a time for event.");
+            } catch (InvalidCommandException e){
+                //this is not reachable as all Invalid Commands are dealt above
             }
         }
         return numTask;
@@ -88,7 +100,7 @@ public class Main {
         System.out.println("What can I do for you?");
     }
 
-    private static int addTask(String beginning, Task[] tasks, String command, int numTask) throws WrongCommandException, TodoException {
+    private static int addTask(String beginning, Task[] tasks, String command, int numTask) throws InvalidCommandException {
 
         int dividerPosition;
         if (!beginning.equals(ADD_TODO)
@@ -100,18 +112,55 @@ public class Main {
         switch (beginning) {
             case ADD_EVENT:
                 dividerPosition = command.indexOf("/at");
+
+                if (command.substring(5).isBlank()) {
+                    throw new EmptyEventException();
+                }
+                if (dividerPosition == -1) {
+                    throw new NoEventTimeMakerException();
+                }
+                if (command.substring(5, dividerPosition).isBlank()) {
+                    throw new EmptyEventException();
+                }
+                try {
+                    command.substring(dividerPosition + 4);
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new NoEventTimeException();
+                }
+
                 tasks[numTask] = new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4));
                 break;
             case ADD_DEADLINE:
                 dividerPosition = command.indexOf("/by");
+
+                if (command.substring(8).isBlank()) {
+                    throw new EmptyDeadlineException();
+                }
+                if (dividerPosition == -1) {
+                    throw new NoDeadlineTimeMarkerException();
+                }
+                if (command.substring(8, dividerPosition).isBlank()) {
+                    throw new EmptyDeadlineException();
+                }
+                try {
+                    command.substring(dividerPosition + 4);
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new NoDeadlineTimeException();
+                }
+
                 tasks[numTask] = new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4));
                 break;
             case ADD_TODO:
+
                 try {
+                    if (command.substring(5).isBlank()) {
+                        throw new EmptyTodoException();
+                    }
                     tasks[numTask] = new Todo(command.substring(5));
-                } catch(StringIndexOutOfBoundsException e){
-                    throw new TodoException();
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new EmptyTodoException();
                 }
+
                 break;
             default:
                 break;

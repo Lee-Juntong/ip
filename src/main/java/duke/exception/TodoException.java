@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class TodoException extends NonCommandException {
+public class TodoException extends InvalidCommandException {
 }

@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class EventException extends NonCommandException {
+public class EventException extends InvalidCommandException {
 }

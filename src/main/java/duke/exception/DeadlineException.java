@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class DeadlineException extends NonCommandException {
+public class DeadlineException extends InvalidCommandException {
 }
