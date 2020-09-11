@@ -2,7 +2,19 @@ package duke;
 
 import java.util.Scanner;
 
-import duke.exception.*;
+import duke.exception.EmptyEventException;
+import duke.exception.WrongCommandException;
+import duke.exception.InvalidCommandException;
+import duke.exception.EmptyTodoException;
+import duke.exception.EmptyDeadlineException;
+import duke.exception.NoEventTimeMakerException;
+import duke.exception.NoEventTimeException;
+import duke.exception.NoDeadlineTimeMarkerException;
+import duke.exception.NoDeadlineTimeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 public class Main {
     public static final int MAX_TASK_CAPACITY = 100;
@@ -70,7 +82,7 @@ public class Main {
                 System.out.println("☹ OOPS!!! You should mark the time for an event with \"/at\"");
             } catch (NoEventTimeException e) {
                 System.out.println("☹ OOPS!!! You should enter a time for event.");
-            } catch (InvalidCommandException e){
+            } catch (InvalidCommandException e) {
                 //this is not reachable as all Invalid Commands are dealt above
             }
         }
