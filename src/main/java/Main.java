@@ -49,19 +49,23 @@ public class Main {
     }
 
     private static void printExitMessage() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Bye. Hope to see you again soon!");
+        printLine();
+    }
+
+    public static void printLine() {
         System.out.println("____________________________________________________________");
     }
 
     private static void printGreetingMessage() {
-        System.out.println("____________________________________________________________");
+        printLine();
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
     }
 
     private static int addTask(String beginning, Task[] tasks, String command, int numTask) {
-        System.out.println("____________________________________________________________");
+        printLine();
         int dividerPosition;
         System.out.println("Got it. I've added this task: ");
         switch (beginning) {
@@ -84,7 +88,7 @@ public class Main {
         //if you don't enter event/deadline/todo here, then there will be error as a null pointer is being accessed
         numTask++;
         System.out.println("Now you have " + numTask + " tasks in the list.");
-        System.out.println("____________________________________________________________");
+        printLine();
         return numTask;
     }
 }
