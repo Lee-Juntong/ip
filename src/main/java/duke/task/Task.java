@@ -11,6 +11,12 @@ public class Task {
         this.isDone = false;
     }
 
+    public void markAsDone(boolean isFromFile) {
+        if (isFromFile) {
+            this.isDone = true;
+        }
+    }
+
     public void markAsDone() {
         this.isDone = true;
         printLine();
@@ -19,6 +25,9 @@ public class Task {
         printLine();
     }
 
+    public String fileString() {
+        return null;
+    }
 
     private static void printLine() {
         System.out.println("____________________________________________________________");

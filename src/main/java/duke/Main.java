@@ -1,7 +1,12 @@
 package duke;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import duke.exception.*;
 import duke.task.Deadline;
@@ -25,6 +30,8 @@ public class Main {
 
         printGreetingMessage();
 
+        //if the user use this app for the 1st time, the folder and file will be created automatically
+        Path filePath = readData();
         Scanner in = new Scanner(System.in);
 
         String command;
@@ -42,8 +49,86 @@ public class Main {
 
             respondMultiWordCommand(tasks, command);
         }
-
+        writeFile(filePath);
         printExitMessage();
+    }
+
+
+    private static Path readData() {
+        Path filePath = createFolderAndFIle();
+        File dataFile = new File(String.valueOf(filePath));
+        try {
+            Scanner s = new Scanner(dataFile);
+            while (s.hasNext()) {
+                String[] words = s.nextLine().split("//");
+                switch (words[0]) {
+                    case "T":
+                        tasks.add(new Todo(words[2]));
+                        if (Integer.parseInt(words[1])==1){
+                            tasks.get(tasks.size()-1).markAsDone(true);
+                        }
+                        break;
+                    case "E":
+                        tasks.add(new Event(words[2],words[3]));
+                        if (Integer.parseInt(words[1])==1){
+                            tasks.get(tasks.size()-1).markAsDone(true);
+                        }
+                        break;
+                    case "D":
+                        tasks.add(new Deadline(words[2],words[3]));
+                        if (Integer.parseInt(words[1])==1){
+                            tasks.get(tasks.size()-1).markAsDone(true);
+                        }
+                        break;
+                    default:
+                        System.out.println("You edit the file in a wrong format. Please check.");
+                        break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("You edit the file in a wrong format. Please check.");
+        }
+        return filePath;
+    }
+
+    private static void writeFile(Path filePath) {
+        try {
+            FileWriter fw = new FileWriter(String.valueOf(filePath));
+            for (Task task : tasks) {
+                fw.write(task.fileString());
+                fw.write(System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("something went wrong when writing to file");
+        }
+    }
+
+
+    private static Path createFolderAndFIle() {
+        String home = System.getProperty("user.dir");
+
+        Path folderPath = java.nio.file.Paths.get(home, "data");
+        Path filePath = java.nio.file.Paths.get(home, "data", "duke.txt");
+
+        if (!java.nio.file.Files.exists(folderPath)) {
+            //System.out.println(folderPath); testing
+            try {
+                java.nio.file.Files.createDirectory(folderPath);
+            } catch (IOException e) {
+                System.out.println("The folder \"data\" is not created");
+            }
+        }
+        if (!java.nio.file.Files.exists(filePath)) {
+            try {
+                java.nio.file.Files.createFile(filePath);
+            } catch (IOException e) {
+                System.out.println("The file \"duke.txt\" is not created");
+            }
+        }
+        return filePath;
     }
 
     private static void printNumTask() {
@@ -98,11 +183,11 @@ public class Main {
                 printLine();
                 System.out.println("☹ OOPS!!! There isn't a task labeled " + words[1]);
                 printLine();
-            } catch (EmptyDeleteException e){
+            } catch (EmptyDeleteException e) {
                 printLine();
-                System.out.println("☹ OOPS!!! You should enter the index of the task you want to delete." );
+                System.out.println("☹ OOPS!!! You should enter the index of the task you want to delete.");
                 printLine();
-            } catch (EmptyDoneException e){
+            } catch (EmptyDoneException e) {
                 printLine();
                 System.out.println("☹ OOPS!!! You should enter the index of the task you have done.");
                 printLine();
