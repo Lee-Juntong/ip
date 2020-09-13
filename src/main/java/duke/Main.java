@@ -17,6 +17,7 @@ public class Main {
     public static final String ADD_EVENT = "event";
     public static final String ADD_DEADLINE = "deadline";
     public static final String ADD_TODO = "todo";
+    public static final String TASK_DELETE = "delete";
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
@@ -49,21 +50,21 @@ public class Main {
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
-    public static void deleteTask(int taskIndex) throws DeleteUndefinedTaskException {
+    private static void deleteTask(int taskIndex) throws DeleteUndefinedTaskException {
         if (taskIndex <= -1 || taskIndex >= tasks.size()) {
             throw new DeleteUndefinedTaskException();
         }
 
-            printLine();
-            System.out.println("Noted. I've removed this task: ");
-            System.out.println(tasks.get(taskIndex).toString());
-            tasks.remove(taskIndex);
-            printNumTask();
-            printLine();
-            
+        printLine();
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println(tasks.get(taskIndex).toString());
+        tasks.remove(taskIndex);
+        printNumTask();
+        printLine();
+
     }
 
-    public static void doneTask(int taskIndex) throws DoneUndefinedTaskException {
+    private static void doneTask(int taskIndex) throws DoneUndefinedTaskException {
         try {
             tasks.get(taskIndex).markAsDone();
         } catch (IndexOutOfBoundsException e) {
@@ -71,22 +72,39 @@ public class Main {
         }
     }
 
+    private static void deleteOrDoneTask(String beginning, String command)
+            throws EmptyDoneException, DoneUndefinedTaskException, EmptyDeleteException, DeleteUndefinedTaskException {
+
+        if (beginning.equals(TASK_DONE)) {
+            if (command.substring(4).isBlank()) {
+                throw new EmptyDoneException();
+            }
+            doneTask(Integer.parseInt(command.substring(5)) - 1);
+        } else {
+            if (command.substring(6).isBlank()) {
+                throw new EmptyDeleteException();
+            }
+            deleteTask(Integer.parseInt(command.substring(7)) - 1);
+        }
+    }
+
     private static void respondMultiWordCommand(ArrayList<Task> tasks, String command) {
         String[] words = command.split(" ");
-        if (words[0].equals(TASK_DONE)) {
+        if (words[0].equals(TASK_DONE) || words[0].equals(TASK_DELETE)) {
             try {
-                doneTask(Integer.parseInt(words[1]) - 1);
-            } catch (DoneUndefinedTaskException e) {
+                deleteOrDoneTask(words[0], command);
+
+            } catch (DoneUndefinedTaskException | DeleteUndefinedTaskException e) {
                 printLine();
                 System.out.println("☹ OOPS!!! There isn't a task labeled " + words[1]);
                 printLine();
-            }
-        } else if (words[0].equals("delete")) {
-            try {
-                deleteTask(Integer.parseInt(words[1]) - 1);
-            } catch (DeleteUndefinedTaskException e) {
+            } catch (EmptyDeleteException e){
                 printLine();
-                System.out.println("☹ OOPS!!! There isn't a task labeled " + words[1]);
+                System.out.println("☹ OOPS!!! You should enter the index of the task you want to delete." );
+                printLine();
+            } catch (EmptyDoneException e){
+                printLine();
+                System.out.println("☹ OOPS!!! You should enter the index of the task you have done.");
                 printLine();
             }
         } else {

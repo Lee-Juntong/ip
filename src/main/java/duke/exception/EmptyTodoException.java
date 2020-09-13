@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class EmptyTodoException extends TodoException{
+public class EmptyTodoException extends TodoException {
 }

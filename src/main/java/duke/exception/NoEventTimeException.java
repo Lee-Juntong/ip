@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class NoEventTimeException extends EventException{
+public class NoEventTimeException extends EventException {
 }
