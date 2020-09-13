@@ -12,6 +12,8 @@ import duke.exception.NoEventTimeMakerException;
 import duke.exception.NoEventTimeException;
 import duke.exception.NoDeadlineTimeMarkerException;
 import duke.exception.NoDeadlineTimeException;
+import duke.exception.DoneUndefinedTaskException;
+import duke.exception.DeleteUndefinedTaskException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -56,12 +58,25 @@ public class Main {
         printExitMessage();
     }
 
+    public static void taskDone(int taskIndex) throws DoneUndefinedTaskException {
+        try {
+            tasks.get(taskIndex).markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DoneUndefinedTaskException();
+        }
+    }
+
     private static int respondMultiWordCommand(ArrayList<Task> tasks, String command, int numTask) {
         String[] words = command.split(" ");
         if (words[0].equals(TASK_DONE)) {
-            tasks.get(Integer.parseInt(words[1]) - 1).markAsDone();
+            try {
+                taskDone(Integer.parseInt(words[1]) - 1);
+            } catch (DoneUndefinedTaskException e) {
+                printLine();
+                System.out.println("☹ OOPS!!! There isn't a task labeled " + words[1]);
+                printLine();
+            }
         } else {
-
             try {
                 numTask = addTask(words[0], tasks, command, numTask);
             } catch (WrongCommandException e) {
@@ -183,7 +198,7 @@ public class Main {
         printLine();
         System.out.println("Got it. I've added this task: ");
         System.out.println(tasks.get(numTask).toString());
-        //if you don't enter event/deadline/todo here, then there will be error as a null pointer is being accessed
+
         numTask++;
         System.out.println("Now you have " + numTask + " tasks in the list.");
         printLine();
