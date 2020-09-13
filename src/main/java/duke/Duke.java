@@ -10,3 +10,4 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
     }
 }
+//I'm not sure whether I should delete this one or not because I do all my codes in Main.java

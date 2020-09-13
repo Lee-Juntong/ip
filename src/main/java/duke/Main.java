@@ -1,39 +1,33 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.exception.EmptyEventException;
-import duke.exception.WrongCommandException;
-import duke.exception.InvalidCommandException;
-import duke.exception.EmptyTodoException;
-import duke.exception.EmptyDeadlineException;
-import duke.exception.NoEventTimeMakerException;
-import duke.exception.NoEventTimeException;
-import duke.exception.NoDeadlineTimeMarkerException;
-import duke.exception.NoDeadlineTimeException;
+import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
 public class Main {
-    public static final int MAX_TASK_CAPACITY = 100;
+
     public static final String EXIT = "bye";
     public static final String PRINT_TASK_LIST = "list";
     public static final String TASK_DONE = "done";
     public static final String ADD_EVENT = "event";
     public static final String ADD_DEADLINE = "deadline";
     public static final String ADD_TODO = "todo";
+    public static final String TASK_DELETE = "delete";
 
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
 
         printGreetingMessage();
 
         Scanner in = new Scanner(System.in);
-        Task[] tasks = new Task[MAX_TASK_CAPACITY];
+
         String command;
-        int numTask = 0;
 
         while (true) {
             command = in.nextLine();
@@ -46,24 +40,76 @@ public class Main {
             }
             //the above are single word command
 
-
-            numTask = respondMultiWordCommand(tasks, command, numTask);
-
-
+            respondMultiWordCommand(tasks, command);
         }
-
 
         printExitMessage();
     }
 
-    private static int respondMultiWordCommand(Task[] tasks, String command, int numTask) {
-        String[] words = command.split(" ");
-        if (words[0].equals(TASK_DONE)) {
-            tasks[Integer.parseInt(words[1]) - 1].markAsDone();
-        } else {
+    private static void printNumTask() {
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+    }
 
+    private static void deleteTask(int taskIndex) throws DeleteUndefinedTaskException {
+        if (taskIndex <= -1 || taskIndex >= tasks.size()) {
+            throw new DeleteUndefinedTaskException();
+        }
+
+        printLine();
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println(tasks.get(taskIndex).toString());
+        tasks.remove(taskIndex);
+        printNumTask();
+        printLine();
+
+    }
+
+    private static void doneTask(int taskIndex) throws DoneUndefinedTaskException {
+        try {
+            tasks.get(taskIndex).markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DoneUndefinedTaskException();
+        }
+    }
+
+    private static void deleteOrDoneTask(String beginning, String command)
+            throws EmptyDoneException, DoneUndefinedTaskException, EmptyDeleteException, DeleteUndefinedTaskException {
+
+        if (beginning.equals(TASK_DONE)) {
+            if (command.substring(4).isBlank()) {
+                throw new EmptyDoneException();
+            }
+            doneTask(Integer.parseInt(command.substring(5)) - 1);
+        } else {
+            if (command.substring(6).isBlank()) {
+                throw new EmptyDeleteException();
+            }
+            deleteTask(Integer.parseInt(command.substring(7)) - 1);
+        }
+    }
+
+    private static void respondMultiWordCommand(ArrayList<Task> tasks, String command) {
+        String[] words = command.split(" ");
+        if (words[0].equals(TASK_DONE) || words[0].equals(TASK_DELETE)) {
             try {
-                numTask = addTask(words[0], tasks, command, numTask);
+                deleteOrDoneTask(words[0], command);
+
+            } catch (DoneUndefinedTaskException | DeleteUndefinedTaskException e) {
+                printLine();
+                System.out.println("☹ OOPS!!! There isn't a task labeled " + words[1]);
+                printLine();
+            } catch (EmptyDeleteException e){
+                printLine();
+                System.out.println("☹ OOPS!!! You should enter the index of the task you want to delete." );
+                printLine();
+            } catch (EmptyDoneException e){
+                printLine();
+                System.out.println("☹ OOPS!!! You should enter the index of the task you have done.");
+                printLine();
+            }
+        } else {
+            try {
+                addTask(words[0], tasks, command);
             } catch (WrongCommandException e) {
                 printLine();
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -83,10 +129,11 @@ public class Main {
             } catch (NoEventTimeException e) {
                 System.out.println("☹ OOPS!!! You should enter a time for event.");
             } catch (InvalidCommandException e) {
+                System.out.println("unknown error happens.");
                 //this is not reachable as all Invalid Commands are dealt above
             }
         }
-        return numTask;
+
     }
 
     private static void printExitMessage() {
@@ -112,14 +159,10 @@ public class Main {
         System.out.println("What can I do for you?");
     }
 
-    private static int addTask(String beginning, Task[] tasks, String command, int numTask) throws InvalidCommandException {
+    private static void addTask(String beginning, ArrayList<Task> tasks, String command) throws InvalidCommandException {
 
         int dividerPosition;
-        if (!beginning.equals(ADD_TODO)
-                && !beginning.equals(ADD_DEADLINE)
-                && !beginning.equals(ADD_EVENT)) {
-            throw new WrongCommandException();
-        }
+
 
         switch (beginning) {
             case ADD_EVENT:
@@ -140,7 +183,7 @@ public class Main {
                     throw new NoEventTimeException();
                 }
 
-                tasks[numTask] = new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4));
+                tasks.add(new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4)));
                 break;
             case ADD_DEADLINE:
                 dividerPosition = command.indexOf("/by");
@@ -160,7 +203,7 @@ public class Main {
                     throw new NoDeadlineTimeException();
                 }
 
-                tasks[numTask] = new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4));
+                tasks.add(new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4)));
                 break;
             case ADD_TODO:
 
@@ -168,25 +211,23 @@ public class Main {
                     if (command.substring(5).isBlank()) {
                         throw new EmptyTodoException();
                     }
-                    tasks[numTask] = new Todo(command.substring(5));
+                    tasks.add(new Todo(command.substring(5)));
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new EmptyTodoException();
                 }
-
                 break;
             default:
-                break;
+                throw new WrongCommandException();
+
         }
 
         //printing works below
         printLine();
         System.out.println("Got it. I've added this task: ");
-        System.out.println(tasks[numTask].toString());
-        //if you don't enter event/deadline/todo here, then there will be error as a null pointer is being accessed
-        numTask++;
-        System.out.println("Now you have " + numTask + " tasks in the list.");
+        System.out.println(tasks.get(tasks.size() - 1).toString());
+        printNumTask();
         printLine();
-        return numTask;
+
     }
 }
 
