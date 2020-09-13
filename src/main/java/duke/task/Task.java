@@ -19,9 +19,7 @@ public class Task {
         printLine();
     }
 
-    public void delete() {
 
-    }
     private static void printLine() {
         System.out.println("____________________________________________________________");
     }
@@ -36,9 +34,6 @@ public class Task {
         printLine();
         System.out.println(" Here are the tasks in your list:");
         for (Task task : tasks) {
-            if (task == null) {
-                break;
-            }
             numPrintedTasks++;
             System.out.println(numPrintedTasks + ". " + task.toString());
 
