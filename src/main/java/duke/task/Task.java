@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.util.ArrayList;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +19,9 @@ public class Task {
         printLine();
     }
 
+    public void delete() {
+
+    }
     private static void printLine() {
         System.out.println("____________________________________________________________");
     }
@@ -26,7 +31,7 @@ public class Task {
         //return tick or X symbols
     }
 
-    public static void printTaskList(Task[] tasks) {
+    public static void printTaskList(ArrayList<Task> tasks) {
         int numPrintedTasks = 0;
         printLine();
         System.out.println(" Here are the tasks in your list:");

@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.exception.EmptyEventException;
@@ -17,7 +18,7 @@ import duke.task.Task;
 import duke.task.Todo;
 
 public class Main {
-    public static final int MAX_TASK_CAPACITY = 100;
+
     public static final String EXIT = "bye";
     public static final String PRINT_TASK_LIST = "list";
     public static final String TASK_DONE = "done";
@@ -25,13 +26,15 @@ public class Main {
     public static final String ADD_DEADLINE = "deadline";
     public static final String ADD_TODO = "todo";
 
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
 
         printGreetingMessage();
 
         Scanner in = new Scanner(System.in);
-        Task[] tasks = new Task[MAX_TASK_CAPACITY];
+
+
         String command;
         int numTask = 0;
 
@@ -46,20 +49,17 @@ public class Main {
             }
             //the above are single word command
 
-
             numTask = respondMultiWordCommand(tasks, command, numTask);
-
-
         }
 
 
         printExitMessage();
     }
 
-    private static int respondMultiWordCommand(Task[] tasks, String command, int numTask) {
+    private static int respondMultiWordCommand(ArrayList<Task> tasks, String command, int numTask) {
         String[] words = command.split(" ");
         if (words[0].equals(TASK_DONE)) {
-            tasks[Integer.parseInt(words[1]) - 1].markAsDone();
+            tasks.get(Integer.parseInt(words[1]) - 1).markAsDone();
         } else {
 
             try {
@@ -83,6 +83,7 @@ public class Main {
             } catch (NoEventTimeException e) {
                 System.out.println("☹ OOPS!!! You should enter a time for event.");
             } catch (InvalidCommandException e) {
+                System.out.println("unknown error happens.");
                 //this is not reachable as all Invalid Commands are dealt above
             }
         }
@@ -112,7 +113,7 @@ public class Main {
         System.out.println("What can I do for you?");
     }
 
-    private static int addTask(String beginning, Task[] tasks, String command, int numTask) throws InvalidCommandException {
+    private static int addTask(String beginning, ArrayList<Task> tasks, String command, int numTask) throws InvalidCommandException {
 
         int dividerPosition;
         if (!beginning.equals(ADD_TODO)
@@ -140,7 +141,7 @@ public class Main {
                     throw new NoEventTimeException();
                 }
 
-                tasks[numTask] = new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4));
+                tasks.add(new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4)));
                 break;
             case ADD_DEADLINE:
                 dividerPosition = command.indexOf("/by");
@@ -160,7 +161,7 @@ public class Main {
                     throw new NoDeadlineTimeException();
                 }
 
-                tasks[numTask] = new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4));
+                tasks.add(new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4)));
                 break;
             case ADD_TODO:
 
@@ -168,7 +169,7 @@ public class Main {
                     if (command.substring(5).isBlank()) {
                         throw new EmptyTodoException();
                     }
-                    tasks[numTask] = new Todo(command.substring(5));
+                    tasks.add(new Todo(command.substring(5)));
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new EmptyTodoException();
                 }
@@ -181,7 +182,7 @@ public class Main {
         //printing works below
         printLine();
         System.out.println("Got it. I've added this task: ");
-        System.out.println(tasks[numTask].toString());
+        System.out.println(tasks.get(numTask).toString());
         //if you don't enter event/deadline/todo here, then there will be error as a null pointer is being accessed
         numTask++;
         System.out.println("Now you have " + numTask + " tasks in the list.");
