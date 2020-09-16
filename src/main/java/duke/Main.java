@@ -56,6 +56,8 @@ public class Main {
 
     private static Path readData() {
         Path filePath = createFolderAndFIle();
+        //createFolderAndFile creates the path if you are using the program the 1st time, or return the path of the file
+        //if you have already created the file
         File dataFile = new File(String.valueOf(filePath));
         try {
             Scanner s = new Scanner(dataFile);
@@ -64,20 +66,20 @@ public class Main {
                 switch (words[0]) {
                     case "T":
                         tasks.add(new Todo(words[2]));
-                        if (Integer.parseInt(words[1])==1){
-                            tasks.get(tasks.size()-1).markAsDone(true);
+                        if (Integer.parseInt(words[1]) == 1) {
+                            tasks.get(tasks.size() - 1).markAsDone(true);
                         }
                         break;
                     case "E":
-                        tasks.add(new Event(words[2],words[3]));
-                        if (Integer.parseInt(words[1])==1){
-                            tasks.get(tasks.size()-1).markAsDone(true);
+                        tasks.add(new Event(words[2], words[3]));
+                        if (Integer.parseInt(words[1]) == 1) {
+                            tasks.get(tasks.size() - 1).markAsDone(true);
                         }
                         break;
                     case "D":
-                        tasks.add(new Deadline(words[2],words[3]));
-                        if (Integer.parseInt(words[1])==1){
-                            tasks.get(tasks.size()-1).markAsDone(true);
+                        tasks.add(new Deadline(words[2], words[3]));
+                        if (Integer.parseInt(words[1]) == 1) {
+                            tasks.get(tasks.size() - 1).markAsDone(true);
                         }
                         break;
                     default:
@@ -87,7 +89,7 @@ public class Main {
             }
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("You edit the file in a wrong format. Please check.");
         }
         return filePath;
@@ -114,7 +116,7 @@ public class Main {
         Path filePath = java.nio.file.Paths.get(home, "data", "duke.txt");
 
         if (!java.nio.file.Files.exists(folderPath)) {
-            //System.out.println(folderPath); testing
+
             try {
                 java.nio.file.Files.createDirectory(folderPath);
             } catch (IOException e) {
@@ -164,12 +166,20 @@ public class Main {
             if (command.substring(4).isBlank()) {
                 throw new EmptyDoneException();
             }
-            doneTask(Integer.parseInt(command.substring(5)) - 1);
+            try {
+                doneTask(Integer.parseInt(command.substring(5)) - 1);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number after done.");
+            }
         } else {
             if (command.substring(6).isBlank()) {
                 throw new EmptyDeleteException();
             }
-            deleteTask(Integer.parseInt(command.substring(7)) - 1);
+            try {
+                deleteTask(Integer.parseInt(command.substring(7)) - 1);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number after delete.");
+            }
         }
     }
 
