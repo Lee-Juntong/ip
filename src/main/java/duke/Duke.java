@@ -1,5 +1,9 @@
 package duke;
 
+import duke.Command.Command;
+import duke.Parser.Parser;
+import duke.Storage.Storage;
+import duke.TaskList.TaskList;
 import duke.UI.UI;
 import duke.exception.DukeException;
 
@@ -36,6 +40,6 @@ public class Duke {
         }
     }
     public static void main(String[] args) {
-
+        new Duke("data/tasks.txt").run();
     }
 }

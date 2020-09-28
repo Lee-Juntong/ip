@@ -7,6 +7,9 @@ import duke.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * UI receives all user inputs, and produces outputs show to the user
+ */
 public class UI {
 
     private final Scanner in;
@@ -14,10 +17,18 @@ public class UI {
         in=new Scanner(System.in);
     }
 
+    /**
+     * reads the user input line by line
+     * @return the string of the line
+     */
     public String readCommand(){
         return in.nextLine();
     }
-    public static void printGreetingMessage() {
+
+    /**
+     * prints the logo of DUKE and greet the user
+     */
+    public void printGreetingMessage() {
         printLine();
 
         String logo = " ____        _        \n"
@@ -29,10 +40,19 @@ public class UI {
 
         System.out.println("What can I do for you?");
     }
-    public static void printLine() {
+
+    /**
+     * prints the separator
+     */
+    public void printLine() {
         System.out.println("____________________________________________________________");
     }
-    public static void printTaskList(ArrayList<Task> tasks) {
+
+    /**
+     * prints all the tasks with labels, based on the input list
+     * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
+     */
+    public void printTaskList(ArrayList<Task> tasks) {
         int numPrintedTasks = 0;
 
         System.out.println(" Here are the tasks in your list:");
@@ -41,7 +61,30 @@ public class UI {
             System.out.println(numPrintedTasks + ". " + task.toString());
         }
     }
-    public static void showError(String message){
+
+    /**
+     * shows the error message when experiencing exceptions
+     * @param message the message get from the error
+     */
+    public void showError(String message){
         System.out.println(message);
+    }
+
+    /**
+     * shows the error message during loading. Since the general IO exception is
+     * handled when executing the process, the error leads to this would be the file
+     * is edited in a wrong way
+     */
+    public void showLoadingError(){
+        System.out.println("You edit the file in a wrong format. Please check.");
+    }
+
+    /**
+     * prints the message during executing commands.
+     * this function is used to make all printing being done in UI
+     * @param message determined by the command
+     */
+    public void print(String message){
+        System.out.print(message);
     }
 }
