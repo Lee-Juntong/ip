@@ -12,6 +12,13 @@ import java.util.Scanner;
  */
 public class UI {
 
+    public static final String LOGO = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+    public static final String LINE_DIVIDER = "____________________________________________________________";
+    public static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
     private final Scanner in;
     public UI() {
         in=new Scanner(System.in);
@@ -31,13 +38,7 @@ public class UI {
     public void printGreetingMessage() {
         printLine();
 
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-
+        System.out.println("Hello from\n" + LOGO);
         System.out.println("What can I do for you?");
     }
 
@@ -45,7 +46,7 @@ public class UI {
      * prints the separator
      */
     public void printLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println(LINE_DIVIDER);
     }
 
     /**
@@ -86,5 +87,25 @@ public class UI {
      */
     public void print(String message){
         System.out.print(message);
+    }
+
+    /**
+     * call when exit the program
+     */
+    public void printExitMessage() {
+        System.out.println(EXIT_MESSAGE);
+    }
+
+    /**
+     * take in a size and prints the total number of tasks
+     * @param size get by calling <code>ArrayList<Task>::Size()</code>
+     */
+    public void printNumTask(int size) {
+        System.out.println("Now you have " + size + " tasks in the list.");
+    }
+
+    public void printDoneMessage(Task task) {
+        System.out.println("Nice! I've marked this task as done: ");
+        System.out.println(toString());
     }
 }

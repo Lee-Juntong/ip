@@ -1,5 +1,6 @@
 package duke.TaskList;
 
+import duke.exception.DoneUndefinedTaskException;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -25,5 +26,45 @@ public class TaskList {
     public TaskList(ArrayList<Task> tasks){
         this.tasks=tasks;
     }
-    public void addTask
+
+    /**
+     * Adds a task to the list
+     * @param taskToBeAdded may be Todo/Event/Deadline based on the usage
+     */
+    public void addTask(Task taskToBeAdded){
+        tasks.add(taskToBeAdded);
+    }
+    public void deleteTask(int taskIndex){
+        tasks.remove(taskIndex);
+    }
+    public void doneTask(int taskIndex) throws DoneUndefinedTaskException {
+        try {
+            tasks.get(taskIndex).markAsDone();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DoneUndefinedTaskException();
+        }
+    }
+
+    /**
+     * Gives the access to the list of tasks
+     * @return the <code>ArrayList<task></code> object to be printed
+     */
+    public ArrayList<Task> getTaskList(){
+        return tasks;
+    }
+
+    /**
+     * @return the size of the ArrayList in the TaskList object
+     */
+    public int size(){
+        return tasks.size();
+    }
+
+    /**
+     * remove the task indicated by the user
+     * @param taskIndex the index of the task that the user want to delete
+     */
+    public void remove(int taskIndex) {
+        tasks.remove(taskIndex);
+    }
 }
