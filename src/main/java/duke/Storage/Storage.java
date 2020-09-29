@@ -30,6 +30,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
+        createFolderAndFIle(filePath);
     }
 
     /**

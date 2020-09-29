@@ -121,7 +121,7 @@ public class UI {
     }
 
     /**
-     * Prints the message when the user delete some task
+     * Prints the message when the user deletes some task
      *
      * @param task the task being deleted
      */
@@ -129,4 +129,14 @@ public class UI {
         System.out.println("Noted. I've removed this task: ");
         System.out.println(task.toString());
     }
+
+    /**
+     * Prints the message when the user adds some task
+     * @param taskAdded the task being added
+     */
+    public void printAddTaskMessage(Task taskAdded) {
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(taskAdded.toString());
+    }
+
 }

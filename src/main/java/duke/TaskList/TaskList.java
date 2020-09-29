@@ -38,10 +38,11 @@ public class TaskList {
         tasks.add(taskToBeAdded);
     }
 
-    public void deleteTask(int taskIndex) {
-        tasks.remove(taskIndex);
-    }
-
+    /**
+     * Mark a task as done
+     * @param taskIndex the index of the task being done
+     * @throws DoneUndefinedTaskException the task is not defined but the user want to mark it as done
+     */
     public void doneTask(int taskIndex) throws DoneUndefinedTaskException {
         try {
             tasks.get(taskIndex).markAsDone();

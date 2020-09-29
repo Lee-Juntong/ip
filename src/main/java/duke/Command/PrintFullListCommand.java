@@ -3,21 +3,12 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DoneUndefinedTaskException;
 import duke.exception.DukeException;
 
-/**
- * Represents the command call when the user mark a task as done
- */
-public class DoneCommand extends Command {
-    private int taskIndex;
-
-    public DoneCommand(int taskIndex) {
-        this.taskIndex = taskIndex;
-    }
+public class PrintFullListCommand extends Command {
 
     /**
-     * Mark the task as done
+     * Prints the list of tasks
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
@@ -26,7 +17,6 @@ public class DoneCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-        tasks.doneTask(taskIndex);
-        ui.printDoneMessage(tasks.get(taskIndex));
+        ui.printTaskList(tasks.getTaskList());
     }
 }

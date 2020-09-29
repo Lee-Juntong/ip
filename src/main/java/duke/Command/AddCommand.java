@@ -3,20 +3,22 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DeleteUndefinedTaskException;
 import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
- * Represents the command call when the user deletes some task
+ * Represents the command call when the user adds some task
  */
-public class DeleteCommand extends Command{
-    private int taskIndex;
+public class AddCommand extends Command {
+    private Task taskToBeAdded;
 
-    public DeleteCommand(int taskIndex) {
-        this.taskIndex = taskIndex;
+
+    public AddCommand(Task taskToBeAdded) {
+        this.taskToBeAdded = taskToBeAdded;
     }
+
     /**
-     * Delete the task
+     * Adds the task
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
@@ -25,11 +27,8 @@ public class DeleteCommand extends Command{
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-        if (taskIndex <= -1 || taskIndex >= tasks.size()) {
-            throw new DeleteUndefinedTaskException();
-        }
-        ui.printDeleteMessage(tasks.get(taskIndex));
-        tasks.remove(taskIndex);
+        tasks.addTask(taskToBeAdded);
+        ui.printAddTaskMessage(taskToBeAdded);
         ui.printNumTask(tasks.size());
     }
 }
