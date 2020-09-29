@@ -34,16 +34,16 @@ public class Storage {
 
     /**
      * Creates the folder and file if not already crated
+     *
      * @param filePath the String of the relative path
      */
     private static void createFolderAndFIle(String filePath) {
 
-         try {
-             new File(filePath).createNewFile();
-         }
-        catch (IOException e) {
-                System.out.println("The file \"" + filePath+"\" is not created");
-            }
+        try {
+            new File(filePath).createNewFile();
+        } catch (IOException e) {
+            System.out.println("The file \"" + filePath + "\" is not created");
+        }
     }
 
     /**
@@ -55,7 +55,8 @@ public class Storage {
 
     /**
      * save the data of the task list to the file
-     * @param tasks    the list of tasks provided by a variable from a TaskList object
+     *
+     * @param tasks the list of tasks provided by a variable from a TaskList object
      * @throws WritingFileException represents the file is not correctly written
      */
     public void writeFile(ArrayList<Task> tasks) throws WritingFileException {
@@ -73,6 +74,7 @@ public class Storage {
 
     /**
      * Prepares the data in the file as an ArrayList, which is used to construct the TaskList
+     *
      * @return the tasks in an ArrayList
      * @throws LoadingException represents the <code>tasks</code> is not correctly created
      */

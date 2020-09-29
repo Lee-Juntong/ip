@@ -8,6 +8,7 @@ package duke.exception;
 public class LoadingException extends DukeException {
     /**
      * Prepare the message to be printed when this exception is experienced
+     *
      * @return the message
      */
     public String getMessage(){

@@ -5,6 +5,7 @@ package duke.exception;
 public class EmptyEventException extends EventException {
     /**
      * Prepare the message to be printed when this exception is experienced
+     *
      * @return the message
      */
     public String getMessage(){

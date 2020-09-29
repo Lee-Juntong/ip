@@ -7,6 +7,7 @@ package duke.exception;
 public class EmptyDeleteException extends DeleteException {
     /**
      * Prepare the message to be printed when this exception is experienced
+     *
      * @return the message
      */
     public String getMessage() {

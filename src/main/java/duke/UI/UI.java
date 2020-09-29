@@ -20,15 +20,17 @@ public class UI {
     public static final String LINE_DIVIDER = "____________________________________________________________";
     public static final String EXIT_MESSAGE = "Bye. Hope to see you again soon!";
     private final Scanner in;
+
     public UI() {
-        in=new Scanner(System.in);
+        in = new Scanner(System.in);
     }
 
     /**
      * reads the user input line by line
+     *
      * @return the string of the line
      */
-    public String readCommand(){
+    public String readCommand() {
         return in.nextLine();
     }
 
@@ -51,6 +53,7 @@ public class UI {
 
     /**
      * prints all the tasks with labels, based on the input list
+     *
      * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
      */
     public void printTaskList(ArrayList<Task> tasks) {
@@ -65,9 +68,10 @@ public class UI {
 
     /**
      * shows the error message when experiencing exceptions
+     *
      * @param message the message get from the error
      */
-    public void showError(String message){
+    public void showError(String message) {
         System.out.println(message);
     }
 
@@ -76,16 +80,17 @@ public class UI {
      * handled when executing the process, the error leads to this would be the file
      * is edited in a wrong way
      */
-    public void showLoadingError(){
+    public void showLoadingError() {
         System.out.println("You edit the file in a wrong format. Please check.");
     }
 
     /**
      * prints the message during executing commands.
      * this function is used to make all printing being done in UI
+     *
      * @param message determined by the command
      */
-    public void print(String message){
+    public void print(String message) {
         System.out.print(message);
     }
 
@@ -98,14 +103,30 @@ public class UI {
 
     /**
      * take in a size and prints the total number of tasks
+     *
      * @param size get by calling <code>ArrayList<Task>::Size()</code>
      */
     public void printNumTask(int size) {
         System.out.println("Now you have " + size + " tasks in the list.");
     }
 
+    /**
+     * Prints the message when the user mark some task as done
+     *
+     * @param task the task being done
+     */
     public void printDoneMessage(Task task) {
         System.out.println("Nice! I've marked this task as done: ");
-        System.out.println(toString());
+        System.out.println(task.toString());
+    }
+
+    /**
+     * Prints the message when the user delete some task
+     *
+     * @param task the task being deleted
+     */
+    public void printDeleteMessage(Task task) {
+        System.out.println("Noted. I've removed this task: ");
+        System.out.println(task.toString());
     }
 }

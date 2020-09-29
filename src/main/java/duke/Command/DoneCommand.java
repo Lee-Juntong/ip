@@ -6,13 +6,26 @@ import duke.UI.UI;
 import duke.exception.DoneUndefinedTaskException;
 import duke.exception.DukeException;
 
+/**
+ * Represents the command call when the user mark a task as done
+ */
 public class DoneCommand extends Command {
     private int taskIndex;
-    public DoneCommand(int taskIndex){
-        this.taskIndex=taskIndex;
+
+    public DoneCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
     }
-    public void execute(TaskList tasks, UI ui, Storage storage)throws DukeException{
+
+    /**
+     * Mark the task as done
+     *
+     * @param tasks   the list of tasks
+     * @param ui      do outputs
+     * @param storage store the data
+     * @throws DukeException the exceptions can happen in this program, to be handled based on the specific exception
+     */
+    public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
         tasks.doneTask(taskIndex);
-        ui.printDoneMessage();
-    };
+        ui.printDoneMessage(tasks.get(taskIndex));
+    }
 }

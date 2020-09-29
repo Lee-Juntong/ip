@@ -22,6 +22,7 @@ public class Duke {
             tasks = new TaskList();
         }
     }
+
     public void run() {
         ui.printGreetingMessage();
         boolean isExit = false;
@@ -39,6 +40,7 @@ public class Duke {
             }
         }
     }
+
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

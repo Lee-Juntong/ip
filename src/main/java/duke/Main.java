@@ -163,20 +163,20 @@ public class Main {
             throws EmptyDoneException, DoneUndefinedTaskException, EmptyDeleteException, DeleteUndefinedTaskException {
 
         if (beginning.equals(TASK_DONE)) {
-            if (command.substring(4).isBlank()) {
+            if (command.substring(4).isBlank()) {//parse
                 throw new EmptyDoneException();
             }
             try {
-                doneTask(Integer.parseInt(command.substring(5)) - 1);
+                doneTask(Integer.parseInt(command.substring(5)) - 1);//parse
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a number after done.");
             }
         } else {
-            if (command.substring(6).isBlank()) {
+            if (command.substring(6).isBlank()) {//parse
                 throw new EmptyDeleteException();
             }
             try {
-                deleteTask(Integer.parseInt(command.substring(7)) - 1);
+                deleteTask(Integer.parseInt(command.substring(7)) - 1);//parse
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a number after delete.");
             }

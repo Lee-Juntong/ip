@@ -6,6 +6,7 @@ package duke.exception;
 public class NoDeadlineTimeMarkerException extends DeadlineException {
     /**
      * Prepare the message to be printed when this exception is experienced
+     *
      * @return the message
      */
     public String getMessage(){

@@ -7,6 +7,7 @@ package duke.exception;
 public class DukeException extends Exception {
     /**
      * A trivial message of an error
+     *
      * @return the message
      */
     public String getMessage(){
