@@ -8,6 +8,6 @@ public class DoneNumberFormatException extends DoneException{
      * @return the error message
      */
     public String getMessage(){
-        return "Please enter a number after done.";
+        return "Please enter an integer after done.";
     }
 }

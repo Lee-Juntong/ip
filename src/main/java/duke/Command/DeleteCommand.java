@@ -26,7 +26,7 @@ public class DeleteCommand extends Command{
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
         if (taskIndex <= -1 || taskIndex >= tasks.size()) {
-            throw new DeleteUndefinedTaskException();
+            throw new DeleteUndefinedTaskException(taskIndex+1);
         }
         ui.printDeleteMessage(tasks.get(taskIndex));
         tasks.remove(taskIndex);

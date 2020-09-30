@@ -26,6 +26,9 @@ public class DoneCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
+        if (taskIndex <= -1 || taskIndex >= tasks.size()) {
+            throw new DoneUndefinedTaskException(taskIndex+1);
+        }
         tasks.doneTask(taskIndex);
         ui.printDoneMessage(tasks.get(taskIndex));
         storage.writeFile(tasks.getTaskList());

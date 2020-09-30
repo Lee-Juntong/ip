@@ -10,7 +10,6 @@ public class DoneUndefinedTaskException extends DoneException {
     public DoneUndefinedTaskException() {
     }
 
-    ;
 
     /**
      * Create an exception according to the input of the user

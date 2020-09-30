@@ -7,6 +7,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * This class contains one function -- parse, to call the respective command function according to the user input
+ */
 public abstract class Parser {
     public static final String EXIT = "bye";
     public static final String PRINT_TASK_LIST = "list";
@@ -16,6 +19,12 @@ public abstract class Parser {
     public static final String ADD_TODO = "todo";
     public static final String TASK_DELETE = "delete";
 
+    /**
+     * this function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
+     * @param fullCommand the full string of user input
+     * @return the specific <\code>Command</\code> object to perform what the user want to do
+     * @throws DukeException includes all exceptions may happen during parsing
+     */
     public static Command parse(String fullCommand) throws DukeException {
     // this block deals with exit and list command
         if (fullCommand.equals(EXIT)) {
@@ -38,12 +47,9 @@ public abstract class Parser {
             } catch (NumberFormatException e) {
                 throw new DoneNumberFormatException();
             }
-            try {
-                return new DoneCommand(taskIndex);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DoneUndefinedTaskException();
+                 return new DoneCommand(taskIndex);
             }
-        }
+
         //this block deals with delete command
         if (words[0].equals(TASK_DELETE)) {
             if (fullCommand.substring(6).isBlank()) {//parse
@@ -54,77 +60,71 @@ public abstract class Parser {
             } catch (NumberFormatException e) {
                 throw new DeleteNumberFormatException();
             }
-            //DeleteUndefinedTaskException is thrown when performing DeleteCommand.execute
             return new DeleteCommand(taskIndex);
         }
 
         //this block deals with add command
+        //we shall check that the user input is not meant for any other command beforehand
+        //because the default block will throw an exception.
+        // i.e. when enter this block, the parser will not go to any other blocks
         int dividerPosition;
 
-
-        switch (beginning) {
+        switch (words[0]) {
             case ADD_EVENT:
-                dividerPosition = command.indexOf("/at");
+                dividerPosition = fullCommand.indexOf("/at");
 
-                if (command.substring(5).isBlank()) {
+                if (fullCommand.substring(5).isBlank()) {
                     throw new EmptyEventException();
                 }
                 if (dividerPosition == -1) {
                     throw new NoEventTimeMakerException();
                 }
-                if (command.substring(5, dividerPosition).isBlank()) {
+                if (fullCommand.substring(5, dividerPosition).isBlank()) {
                     throw new EmptyEventException();
                 }
                 try {
-                    command.substring(dividerPosition + 4);
+                    fullCommand.substring(dividerPosition + 4);
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new NoEventTimeException();
                 }
 
-                tasks.add(new Event(command.substring(6, dividerPosition), command.substring(dividerPosition + 4)));
-                break;
-            case ADD_DEADLINE:
-                dividerPosition = command.indexOf("/by");
+                return new AddCommand(new Event(fullCommand.substring(6, dividerPosition), fullCommand.substring(dividerPosition + 4)));
 
-                if (command.substring(8).isBlank()) {
+            case ADD_DEADLINE:
+                dividerPosition = fullCommand.indexOf("/by");
+
+                if (fullCommand.substring(8).isBlank()) {
                     throw new EmptyDeadlineException();
                 }
                 if (dividerPosition == -1) {
                     throw new NoDeadlineTimeMarkerException();
                 }
-                if (command.substring(8, dividerPosition).isBlank()) {
+                if (fullCommand.substring(8, dividerPosition).isBlank()) {
                     throw new EmptyDeadlineException();
                 }
                 try {
-                    command.substring(dividerPosition + 4);
+                    fullCommand.substring(dividerPosition + 4);
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new NoDeadlineTimeException();
                 }
 
-                tasks.add(new Deadline(command.substring(9, dividerPosition), command.substring(dividerPosition + 4)));
-                break;
+                return new AddCommand(new Deadline(fullCommand.substring(9, dividerPosition), fullCommand.substring(dividerPosition + 4)));
+
             case ADD_TODO:
 
                 try {
-                    if (command.substring(5).isBlank()) {
+                    if (fullCommand.substring(5).isBlank()) {
                         throw new EmptyTodoException();
                     }
-                    tasks.add(new Todo(command.substring(5)));
+                    return new AddCommand(new Todo(fullCommand.substring(5)));
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new EmptyTodoException();
                 }
-                break;
+
             default:
                 throw new WrongCommandException();
 
         }
 
-
-
-
-
-
-
-        throw new WrongCommandException();
     }
 }

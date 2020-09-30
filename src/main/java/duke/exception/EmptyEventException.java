@@ -9,6 +9,6 @@ public class EmptyEventException extends EventException {
      * @return the message
      */
     public String getMessage(){
-        return "☹ OOPS!!! The description of a event cannot be empty.";
+        return "☹ OOPS!!! The description of an event cannot be empty.";
     }
 }

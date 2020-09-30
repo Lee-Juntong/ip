@@ -8,6 +8,6 @@ public class DeleteNumberFormatException extends DeleteException{
      * @return the error message
      */
     public String getMessage(){
-        return "Please enter a number after delete.";
+        return "Please enter an integer after delete.";
     }
 }
