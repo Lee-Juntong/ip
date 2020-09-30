@@ -7,6 +7,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 /**
  * This class contains one function -- parse, to call the respective command function according to the user input
  */
@@ -21,12 +25,13 @@ public abstract class Parser {
 
     /**
      * this function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
+     *
      * @param fullCommand the full string of user input
      * @return the specific <\code>Command</\code> object to perform what the user want to do
      * @throws DukeException includes all exceptions may happen during parsing
      */
     public static Command parse(String fullCommand) throws DukeException {
-    // this block deals with exit and list command
+        // this block deals with exit and list command
         if (fullCommand.equals(EXIT)) {
             return new ExitCommand();
         } else if (fullCommand.equals(PRINT_TASK_LIST)) {
@@ -43,12 +48,12 @@ public abstract class Parser {
                 throw new EmptyDoneException();
             }
             try {
-                taskIndex=Integer.parseInt(fullCommand.substring(5))-1;
+                taskIndex = Integer.parseInt(fullCommand.substring(5)) - 1;
             } catch (NumberFormatException e) {
                 throw new DoneNumberFormatException();
             }
-                 return new DoneCommand(taskIndex);
-            }
+            return new DoneCommand(taskIndex);
+        }
 
         //this block deals with delete command
         if (words[0].equals(TASK_DELETE)) {
@@ -68,7 +73,8 @@ public abstract class Parser {
         //because the default block will throw an exception.
         // i.e. when enter this block, the parser will not go to any other blocks
         int dividerPosition;
-
+        int timeDivider;
+        String dateTime;
         switch (words[0]) {
             case ADD_EVENT:
                 dividerPosition = fullCommand.indexOf("/at");
@@ -87,8 +93,16 @@ public abstract class Parser {
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new NoEventTimeException();
                 }
+                try {
+                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(" ");
+                    dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                            + "T"
+                            + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                    return new AddCommand(new Event(fullCommand.substring(6, dividerPosition), LocalDateTime.parse(dateTime)));
+                } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                    throw new TimeFormatException();
+                }
 
-                return new AddCommand(new Event(fullCommand.substring(6, dividerPosition), fullCommand.substring(dividerPosition + 4)));
 
             case ADD_DEADLINE:
                 dividerPosition = fullCommand.indexOf("/by");
@@ -107,8 +121,15 @@ public abstract class Parser {
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new NoDeadlineTimeException();
                 }
-
-                return new AddCommand(new Deadline(fullCommand.substring(9, dividerPosition), fullCommand.substring(dividerPosition + 4)));
+                try {
+                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(" ");
+                    dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
+                            + "T"
+                            + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
+                    return new AddCommand(new Deadline(fullCommand.substring(9, dividerPosition), LocalDateTime.parse(dateTime)));
+                } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                    throw new TimeFormatException();
+                }
 
             case ADD_TODO:
 

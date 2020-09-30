@@ -1,6 +1,7 @@
 package duke.Storage;
 
 import duke.exception.LoadingException;
+import duke.exception.TimeFormatException;
 import duke.exception.WritingFileException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -11,6 +12,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -90,19 +93,27 @@ public class Storage {
                     case "T":
                         tasks.add(new Todo(words[2]));
                         if (Integer.parseInt(words[1]) == 1) {
-                            tasks.get(tasks.size() - 1).markAsDone(true);
+                            tasks.get(tasks.size() - 1).markAsDone();
                         }
                         break;
                     case "E":
-                        tasks.add(new Event(words[2], words[3]));
+                        try {
+                            tasks.add(new Event(words[2], LocalDateTime.parse(words[3])));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new LoadingException();
+                        }
                         if (Integer.parseInt(words[1]) == 1) {
-                            tasks.get(tasks.size() - 1).markAsDone(true);
+                            tasks.get(tasks.size() - 1).markAsDone();
                         }
                         break;
                     case "D":
-                        tasks.add(new Deadline(words[2], words[3]));
+                        try {
+                            tasks.add(new Deadline(words[2], LocalDateTime.parse(words[3])));
+                        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+                            throw new LoadingException();
+                        }
                         if (Integer.parseInt(words[1]) == 1) {
-                            tasks.get(tasks.size() - 1).markAsDone(true);
+                            tasks.get(tasks.size() - 1).markAsDone();
                         }
                         break;
                     default:
