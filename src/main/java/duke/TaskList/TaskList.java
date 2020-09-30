@@ -70,14 +70,9 @@ public class TaskList {
     /**
      * remove the task indicated by the user
      *
-     * @param taskIndex the index of the task that the user want to delete
      */
-    public void remove(int taskIndex) throws DeleteUndefinedTaskException {
-        try {
+    public void remove(int taskIndex) {
             tasks.remove(taskIndex);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DeleteUndefinedTaskException(taskIndex);
-        }
     }
 
     /**

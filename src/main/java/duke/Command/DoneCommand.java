@@ -17,7 +17,7 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * Mark the task as done
+     * Mark the task as done, and update the file
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
@@ -28,5 +28,6 @@ public class DoneCommand extends Command {
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
         tasks.doneTask(taskIndex);
         ui.printDoneMessage(tasks.get(taskIndex));
+        storage.writeFile(tasks.getTaskList());
     }
 }

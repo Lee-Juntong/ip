@@ -18,7 +18,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds the task
+     * Adds the task, and update the file
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
@@ -30,5 +30,6 @@ public class AddCommand extends Command {
         tasks.addTask(taskToBeAdded);
         ui.printAddTaskMessage(taskToBeAdded);
         ui.printNumTask(tasks.size());
+        storage.writeFile(tasks.getTaskList());
     }
 }

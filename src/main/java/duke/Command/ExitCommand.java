@@ -22,6 +22,6 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
         isExit = true;
         ui.printExitMessage();
-        storage.writeFile(tasks.getTaskList());
+
     }
 }

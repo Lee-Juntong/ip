@@ -16,7 +16,7 @@ public class DeleteCommand extends Command{
         this.taskIndex = taskIndex;
     }
     /**
-     * Delete the task
+     * Delete the task, and update the file
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
@@ -31,5 +31,6 @@ public class DeleteCommand extends Command{
         ui.printDeleteMessage(tasks.get(taskIndex));
         tasks.remove(taskIndex);
         ui.printNumTask(tasks.size());
+        storage.writeFile(tasks.getTaskList());
     }
 }
