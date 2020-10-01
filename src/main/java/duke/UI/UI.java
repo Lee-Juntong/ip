@@ -26,7 +26,7 @@ public class UI {
     }
 
     /**
-     * reads the user input line by line
+     * Reads the user input line by line
      *
      * @return the string of the line
      */
@@ -35,7 +35,7 @@ public class UI {
     }
 
     /**
-     * prints the logo of DUKE and greet the user
+     * Prints the logo of DUKE and greet the user
      */
     public void printGreetingMessage() {
         printLine();
@@ -45,14 +45,14 @@ public class UI {
     }
 
     /**
-     * prints the separator
+     * Prints the separator
      */
     public void printLine() {
         System.out.println(LINE_DIVIDER);
     }
 
     /**
-     * prints all the tasks with labels, based on the input list
+     * Prints all the tasks with labels, based on the input list
      *
      * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
      */
@@ -67,7 +67,22 @@ public class UI {
     }
 
     /**
-     * shows the error message when experiencing exceptions
+     * Prints all the tasks of the filtered list with labels, based on the input list
+     *
+     * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
+     */
+    public void printFilteredTaskList(ArrayList<Task> tasks) {
+        int numPrintedTasks = 0;
+
+        System.out.println(" Here are the matching tasks in your list:");
+        for (Task task : tasks) {
+            numPrintedTasks++;
+            System.out.println(numPrintedTasks + ". " + task.toString());
+        }
+    }
+
+    /**
+     * Shows the error message when experiencing exceptions
      *
      * @param message the message get from the error
      */
@@ -76,7 +91,7 @@ public class UI {
     }
 
     /**
-     * shows the error message during loading. Since the general IO exception is
+     * Shows the error message during loading. Since the general IO exception is
      * handled when executing the process, the error leads to this would be the file
      * is edited in a wrong way
      */
@@ -85,8 +100,8 @@ public class UI {
     }
 
     /**
-     * prints the message during executing commands.
-     * this function is used to make all printing being done in UI
+     * Prints the message during executing commands.
+     * This function is used to make all printing being done in UI
      *
      * @param message determined by the command
      */
@@ -95,14 +110,14 @@ public class UI {
     }
 
     /**
-     * call when exit the program
+     * Call when exit the program
      */
     public void printExitMessage() {
         System.out.println(EXIT_MESSAGE);
     }
 
     /**
-     * take in a size and prints the total number of tasks
+     * Take in a size and prints the total number of tasks
      *
      * @param size get by calling <code>ArrayList<Task>::Size()</code>
      */
@@ -132,6 +147,7 @@ public class UI {
 
     /**
      * Prints the message when the user adds some task
+     *
      * @param taskAdded the task being added
      */
     public void printAddTaskMessage(Task taskAdded) {

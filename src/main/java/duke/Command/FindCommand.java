@@ -4,19 +4,34 @@ import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
 import duke.exception.DukeException;
+import duke.exception.NoMatchingTaskException;
+import duke.task.Task;
 
-public class FindCommand extends Command{
+import java.util.ArrayList;
+
+
+public class FindCommand extends Command {
+    private String filterString;
+
+    public FindCommand(String filterString) {
+        this.filterString = filterString;
+    }
 
     /**
-     * Execute the command based on the specific command type
+     * Find the tasks having the key word provided by the user, and print that filtered list
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
      * @param storage store the data
-     * @throws DukeException the exceptions can happen in this program, to be handled based on the specific exception
+     * @throws DukeException the exceptions can happen in this function, to be handled based on the specific exception
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
 
+        ArrayList<Task> filteredTaskList = tasks.filterWith(filterString);
+        if (filteredTaskList.size()==0){
+            throw new NoMatchingTaskException();
+        }
+        ui.printFilteredTaskList(filteredTaskList);
     }
 }

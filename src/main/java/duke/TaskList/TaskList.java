@@ -6,21 +6,23 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+import static java.util.stream.Collectors.toList;
+
 /**
- * contains the list of the tasks and provides ways to delete/add/mark as done tasks
+ * Contains the list of the tasks and provides ways to delete/add/mark as done tasks
  */
 public class TaskList {
     private ArrayList<Task> tasks;
 
     /**
-     * construct the tasks as an empty ArrayList
+     * Construct the tasks as an empty ArrayList
      */
     public TaskList() {
         tasks = new ArrayList<Task>();
     }
 
     /**
-     * when loading from the file, create the list as provided in the file
+     * When loading from the file, create the list as provided in the file
      *
      * @param tasks provided by <code>Storage::load()</code>
      * @see duke.Storage.Storage
@@ -68,7 +70,7 @@ public class TaskList {
     }
 
     /**
-     * remove the task indicated by the user
+     * Remove the task indicated by the user
      *
      */
     public void remove(int taskIndex) {
@@ -83,5 +85,18 @@ public class TaskList {
      */
     public Task get(int taskIndex) {
         return tasks.get(taskIndex);
+    }
+
+    /**
+     * Filter the task list to find whether the list contains the information looking for by the user
+     * @param filterString the key word that the user is looking for
+     * @return the filtered list. this list contains only the tasks that satisfy the requirement
+     */
+    public ArrayList<Task> filterWith(String filterString) {
+        ArrayList<Task> filteredTaskList=(ArrayList<Task>) tasks.stream()
+                .filter(s -> s.getDescription().contains(filterString))
+                .collect(toList());
+
+        return filteredTaskList;
     }
 }

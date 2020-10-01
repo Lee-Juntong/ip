@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.util.ArrayList;
 
 /**
  * Represents the task objects.
@@ -29,7 +28,7 @@ public abstract class Task {
     public abstract String fileString();
 
     /**
-     * provides the status of the task as a icon
+     * Provides the status of the task as a icon
      *
      * @return returns a tick if the task is done, and returns a cross if the task is not done
      */
@@ -39,12 +38,21 @@ public abstract class Task {
     }
 
     /**
-     * prepare the string to be printed in the list
+     * Prepare the string to be printed in the list
      *
      * @return the common part for Event, Deadline, Todo
      */
     public String toString() {
         return "[" + getStatusIcon() + "]" + description;
+    }
+
+    /**
+     * Provides the String variable of the description of this task
+     *
+     * @return the description of this task
+     */
+    public String getDescription() {
+        return description;
     }
 }
 

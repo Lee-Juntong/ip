@@ -6,11 +6,11 @@ package duke.exception;
  */
 public class DukeException extends Exception {
     /**
-     * A trivial message of an error
-     *
+     * Prepare the message to be printed when the exception is experienced
+     * Generally, DukeException should not be thrown in this program
      * @return the message
      */
     public String getMessage(){
-        return "this is an error";
-    }
+        return "There is an unexpected error.";
+    };
 }

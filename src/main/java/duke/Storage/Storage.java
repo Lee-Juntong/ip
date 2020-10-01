@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * this class creates the folder and file path if it's not already created
+ * This class creates the folder and file path if it's not already created
  * prepare the data in the file to be used
  * writes data when exit
  */
@@ -27,7 +27,7 @@ public class Storage {
     private String filePath;
 
     /**
-     * set the <code>filepath </code> according to the user input
+     * Set the <code>filepath </code> according to the user input
      *
      * @param filePath is the path of the file
      */
@@ -58,7 +58,7 @@ public class Storage {
     }
 
     /**
-     * save the data of the task list to the file
+     * Save the data of the task list to the file
      *
      * @param tasks the list of tasks provided by a variable from a TaskList object
      * @throws WritingFileException represents the file is not correctly written

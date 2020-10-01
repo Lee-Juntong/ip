@@ -12,7 +12,7 @@ public class Deadline extends Task {
     protected LocalDateTime by;
 
     /**
-     * convert the information about this deadline to a string that is to be stored in a file
+     * Convert the information about this deadline to a string that is to be stored in a file
      *
      * @return the result string to be stored
      */
@@ -26,7 +26,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * prepare the string to be printed in the list
+     * Prepare the string to be printed in the list
      *
      * @return the string required in a certain format
      * Example of the format: [D][✘]a  (by: Feb 20 2020 08:00)
