@@ -132,6 +132,7 @@ public class UI {
 
     /**
      * Prints the message when the user adds some task
+     *
      * @param taskAdded the task being added
      */
     public void printAddTaskMessage(Task taskAdded) {

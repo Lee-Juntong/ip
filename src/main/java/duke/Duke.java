@@ -7,6 +7,10 @@ import duke.TaskList.TaskList;
 import duke.UI.UI;
 import duke.exception.DukeException;
 
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -23,6 +27,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         ui.printGreetingMessage();
         boolean isExit = false;
