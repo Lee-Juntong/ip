@@ -1,6 +1,7 @@
 package duke.task;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,6 +24,15 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
+    }
+
+    /**
+     * Provides the date of the task
+     *
+     * @return the LocalDate get from LocalDateTime
+     */
+    public LocalDate getDate() {
+        return LocalDate.from(by);
     }
 
     /**

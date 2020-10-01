@@ -154,5 +154,23 @@ public class UI {
         System.out.println("Got it. I've added this task: ");
         System.out.println(taskAdded.toString());
     }
+    /**
+     * Prints all the tasks of the filtered list with labels, based on the input list
+     *
+     * @param filteredTaskList an <\code>ArrayList</\code> of tasks to be printed one by one
+     */
+    public void printFilteredDateTaskList(ArrayList<Task> filteredTaskList) {
+        int numPrintedTasks = 0;
+
+        System.out.println(" Here are the tasks on the given date in your list:");
+        for (Task task : filteredTaskList) {
+            numPrintedTasks++;
+            System.out.println(numPrintedTasks + ". " + task.toString());
+        }
+    }
+
+
+
+
 
 }

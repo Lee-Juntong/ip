@@ -2,7 +2,7 @@ package duke.exception;
 
 /**
  * Represents the case when the user types find but do not specify
- * the key word
+ * the keyword
  */
 public class EmptyFindException extends DukeException {
     /**
@@ -11,6 +11,6 @@ public class EmptyFindException extends DukeException {
      * @return the message
      */
     public String getMessage() {
-        return "☹ OOPS!!! You should enter the key word of the tasks you want to find.";
+        return "☹ OOPS!!! You should enter the keyword of the tasks you want to find.";
     }
 }

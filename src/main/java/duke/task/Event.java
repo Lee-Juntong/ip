@@ -1,8 +1,11 @@
 package duke.task;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+
 
 /**
  * Represents the Event tasks
@@ -18,6 +21,15 @@ public class Event extends Task {
      */
     public String fileString() {
         return "E//" + (isDone ? 1 : 0) + "//" + description + "//" + at;
+    }
+
+    /**
+     * Provides the date of the task
+     *
+     * @return the LocalDate get from LocalDateTime
+     */
+    public LocalDate getDate() {
+        return LocalDate.from(at);
     }
 
     public Event(String description, LocalDateTime at) {

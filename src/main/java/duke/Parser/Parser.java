@@ -7,7 +7,9 @@ import duke.Command.DeleteCommand;
 import duke.Command.DoneCommand;
 import duke.Command.ExitCommand;
 import duke.Command.FindCommand;
+import duke.Command.FindDateCommand;
 import duke.Command.PrintFullListCommand;
+import duke.exception.DateFormatException;
 import duke.exception.DeleteNumberFormatException;
 import duke.exception.DoneNumberFormatException;
 import duke.exception.DukeException;
@@ -15,6 +17,7 @@ import duke.exception.EmptyDeadlineException;
 import duke.exception.EmptyDeleteException;
 import duke.exception.EmptyDoneException;
 import duke.exception.EmptyEventException;
+import duke.exception.EmptyFindDateException;
 import duke.exception.EmptyFindException;
 import duke.exception.EmptyTodoException;
 import duke.exception.NoDeadlineTimeException;
@@ -27,6 +30,7 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -45,6 +49,7 @@ public abstract class Parser {
     public static final String BY = "/by";
     public static final String SINGLE_SPACE = " ";
     public static final String AT = "/at";
+    private static final String TASK_FIND_DATE = "date";
 
     /**
      * This function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
@@ -69,6 +74,18 @@ public abstract class Parser {
                 throw new EmptyFindException();
             }
             return new FindCommand(fullCommand.substring(5));
+        }
+        
+        //this block deals with find date command
+        if (words[0].equals(TASK_FIND_DATE)) {
+            if (fullCommand.substring(4).isBlank()) {
+                throw new EmptyFindDateException();
+            }
+            try {
+                return new FindDateCommand(LocalDate.parse(fullCommand.substring(5)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
+            }
         }
 
         int taskIndex;//to indicate what is the task we are dealing with. may not be used.

@@ -1,6 +1,8 @@
 package duke.task;
 
 
+import java.time.LocalDate;
+
 /**
  * Represents the task objects.
  * Contains a String <\code>description</\code> , which is the description of the task,
@@ -19,7 +21,7 @@ public abstract class Task {
     }
 
     /**
-     * mark a task's status as done
+     * Mark a task's status as done
      */
     public void markAsDone() {
         this.isDone = true;
@@ -44,6 +46,15 @@ public abstract class Task {
      */
     public String toString() {
         return "[" + getStatusIcon() + "]" + description;
+    }
+
+    /**
+     * Provides the date of the task
+     *
+     * @return the LocalDate get from LocalDateTime
+     */
+    public LocalDate getDate() {
+        return null;
     }
 
     /**

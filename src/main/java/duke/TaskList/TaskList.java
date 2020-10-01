@@ -4,6 +4,7 @@ import duke.exception.DeleteUndefinedTaskException;
 import duke.exception.DoneUndefinedTaskException;
 import duke.task.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
@@ -88,14 +89,27 @@ public class TaskList {
     }
 
     /**
-     * Filter the task list to find whether the list contains the information looking for by the user
+     * Filter the task list to find the tasks contain the information looking for by the user
      *
-     * @param filterString the key word that the user is looking for
+     * @param filterString the keyword that the user is looking for
      * @return the filtered list. this list contains only the tasks that satisfy the requirement
      */
     public ArrayList<Task> filterWith(String filterString) {
         ArrayList<Task> filteredTaskList = (ArrayList<Task>) tasks.stream()
                 .filter(s -> s.getDescription().contains(filterString))
+                .collect(toList());
+
+        return filteredTaskList;
+    }
+    /**
+     * Filter the task list to find the tasks happen on the date looking for by the user
+     *
+     * @param date the date that the user is looking for
+     * @return the filtered list. this list contains only the tasks that satisfy the requirement
+     */
+    public ArrayList<Task> filterDateWith(LocalDate date) {
+        ArrayList<Task> filteredTaskList = (ArrayList<Task>) tasks.stream()
+                .filter(s -> s.getDate().isEqual(date))
                 .collect(toList());
 
         return filteredTaskList;

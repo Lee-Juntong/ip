@@ -9,7 +9,9 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
-
+/**
+ * Represents the command call when the user want to find the tasks having a certain keyword
+ */
 public class FindCommand extends Command {
     private final String filterString;
 
@@ -18,7 +20,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Find the tasks having the key word provided by the user, and print that filtered list
+     * Find the tasks having the keyword provided by the user, and print that filtered list
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs
@@ -27,7 +29,6 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
-
         ArrayList<Task> filteredTaskList = tasks.filterWith(filterString);
         if (filteredTaskList.size() == 0) {
             throw new NoMatchingTaskException();

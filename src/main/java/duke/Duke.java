@@ -5,6 +5,7 @@ import duke.Parser.Parser;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
+import duke.exception.CreatingFileException;
 import duke.exception.DukeException;
 
 /**
@@ -12,13 +13,17 @@ import duke.exception.DukeException;
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
-    private final Storage storage;
+    private Storage storage;
     private TaskList tasks;
-    private final UI ui;
+    private UI ui;
 
     public Duke(String filePath) {
         ui = new UI();
-        storage = new Storage(filePath);
+        try {
+            storage = new Storage(filePath);
+        } catch (CreatingFileException e) {
+            ui.showError(e.getMessage());
+        }
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
