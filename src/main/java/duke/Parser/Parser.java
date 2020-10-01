@@ -42,6 +42,9 @@ public abstract class Parser {
     public static final String ADD_TODO = "todo";
     public static final String TASK_DELETE = "delete";
     public static final String TASK_FIND = "find";
+    public static final String BY = "/by";
+    public static final String SINGLE_SPACE = " ";
+    public static final String AT = "/at";
 
     /**
      * This function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
@@ -58,7 +61,7 @@ public abstract class Parser {
             return new PrintFullListCommand();
         }
 
-        String[] words = fullCommand.split(" ");
+        String[] words = fullCommand.split(SINGLE_SPACE);
 
         //this block deals with find command
         if(words[0].equals(TASK_FIND)){
@@ -85,7 +88,7 @@ public abstract class Parser {
 
         //this block deals with delete command
         if (words[0].equals(TASK_DELETE)) {
-            if (fullCommand.substring(6).isBlank()) {//parse
+            if (fullCommand.substring(6).isBlank()) {
                 throw new EmptyDeleteException();
             }
             try {
@@ -105,7 +108,7 @@ public abstract class Parser {
         String dateTime;
         switch (words[0]) {
             case ADD_EVENT:
-                dividerPosition = fullCommand.indexOf("/at");
+                dividerPosition = fullCommand.indexOf(AT);
 
                 if (fullCommand.substring(5).isBlank()) {
                     throw new EmptyEventException();
@@ -122,7 +125,7 @@ public abstract class Parser {
                     throw new NoEventTimeException();
                 }
                 try {
-                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(" ");
+                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
                     dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
                             + "T"
                             + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
@@ -133,7 +136,7 @@ public abstract class Parser {
 
 
             case ADD_DEADLINE:
-                dividerPosition = fullCommand.indexOf("/by");
+                dividerPosition = fullCommand.indexOf(BY);
 
                 if (fullCommand.substring(8).isBlank()) {
                     throw new EmptyDeadlineException();
@@ -150,7 +153,7 @@ public abstract class Parser {
                     throw new NoDeadlineTimeException();
                 }
                 try {
-                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(" ");
+                    timeDivider = fullCommand.substring(dividerPosition + 4).indexOf(SINGLE_SPACE);
                     dateTime = fullCommand.substring(dividerPosition + 4, dividerPosition + 4 + timeDivider)
                             + "T"
                             + fullCommand.substring(dividerPosition + 4 + timeDivider + 1);
