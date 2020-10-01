@@ -16,8 +16,9 @@ This application aims to help the user store tasks and trace the status of tasks
 * [Find Tasks on Date: `date`](#find-tasks-on-date-date)
 ###[FAQ](#faq)
 ###[Command Summary](#command-summary)
-<p>
+
 ---
+##HAHA
 ###Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
