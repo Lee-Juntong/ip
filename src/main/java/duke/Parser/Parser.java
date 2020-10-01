@@ -4,10 +4,8 @@ import duke.Command.*;
 import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.Task;
 import duke.task.Todo;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -25,7 +23,7 @@ public abstract class Parser {
     public static final String TASK_FIND = "find";
 
     /**
-     * this function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
+     * This function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
      *
      * @param fullCommand the full string of user input
      * @return the specific <\code>Command</\code> object to perform what the user want to do
