@@ -3,8 +3,8 @@ Duke is __a desktop app for managing tasks,
 optimized for use via a Command Line Interface__ (CLI). 
 This application aims to help the user store tasks and trace the status of tasks.
 
-[**Quick Start**](#quick-start) <p>
-[**Features**](#features) 
+[**Quick Start**](#quick-start)
+<br>[**Features**](#features) 
 * [Adding Todo: `todo`](#adding-todo-todo)
 * [Adding Event: `event`](#adding-event-event)
 * [Adding Deadline: `deadline`](#adding-deadline-deadline)
@@ -13,9 +13,10 @@ This application aims to help the user store tasks and trace the status of tasks
 * [Deleting Task: `delete`](#deleting-task-delete)
 * [Done Task: `done`](#done-task-done)
 * [Exit the Application: `bye`](#exit-the-application-bye)
-* [Find Tasks on Date: `date`](#find-tasks-on-date-date)<p>
-[**FAQ**](#faq)<p>
-[**Command Summary**](#command-summary)
+* [Find Tasks on Date: `date`](#find-tasks-on-date-date)</ul>
+[**FAQ**](#faq)
+<br>[**Command Summary**](#command-summary)
+ 
 
 ---
 ### Quick Start
@@ -36,14 +37,14 @@ This application aims to help the user store tasks and trace the status of tasks
 ###### Notes about the command format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<p>
-e.g. in todo `DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo do something`.
+e.g. in todo `DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `todo do something`.<p>
 
 #### Adding Todo: `todo`
 Adds a Todo to the task list.<p>
 **Format**: `todo DESCRIPTION`<p>
 Examples:<p>
 * `todo finish homework`
-
+ 
 #### Adding Event: `event`
 Adds an Event to the task list.<p>
 **Format**: `event DESCRIPTION /at TIME`<p>
