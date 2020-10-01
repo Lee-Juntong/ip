@@ -92,7 +92,7 @@ Exits the application.<p>
 **Format**:`bye`
 ___
 ###FAQ
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another Computer?<p>
 **A**: Install the app in the other computer and overwrite the data\tasks.txt file it creates with the file that contains your previous data.
 ___
 ###Command Summary
