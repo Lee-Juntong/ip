@@ -16,7 +16,8 @@ This application aims to help the user store tasks and trace the status of tasks
 * [Find Tasks on Date: `date`](#find-tasks-on-date-date)
 ###[FAQ](#faq)
 ###[Command Summary](#command-summary)
-___
+<p>
+---
 ###Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -30,7 +31,7 @@ ___
     * `find homework` : Prints all tasks having the keyword in the description
     * `bye` : Exits the application.
 1. Refer to the [Features](#features) below for details of each command.    
-___
+---
 ###Features
 ######Notes about the command format:
 
@@ -90,11 +91,11 @@ Example:<p>
 ####Exit the Application: `bye`
 Exits the application.<p>
 **Format**:`bye`
-___
+---
 ###FAQ
 **Q**: How do I transfer my data to another Computer?<p>
 **A**: Install the app in the other computer and overwrite the data\tasks.txt file it creates with the file that contains your previous data.
-___
+---
 ###Command Summary
 ACTION | FORMAT & EXAMPLE
 ------------ | -------------
