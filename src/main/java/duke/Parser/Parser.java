@@ -22,6 +22,7 @@ public abstract class Parser {
     public static final String ADD_DEADLINE = "deadline";
     public static final String ADD_TODO = "todo";
     public static final String TASK_DELETE = "delete";
+    public static final String TASK_FIND = "find";
 
     /**
      * this function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
@@ -39,6 +40,14 @@ public abstract class Parser {
         }
 
         String[] words = fullCommand.split(" ");
+
+        //this block deals with find command
+        if(words[0].equals(TASK_FIND)){
+            if (fullCommand.substring(4).isBlank()) {
+                throw new EmptyFindException();
+            }
+            return new FindCommand(fullCommand.substring(5));
+        }
 
         int taskIndex;//to indicate what is the task we are dealing with. may not be used.
 

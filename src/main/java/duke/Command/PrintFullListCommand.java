@@ -13,7 +13,7 @@ public class PrintFullListCommand extends Command {
      * @param tasks   the list of tasks
      * @param ui      do outputs
      * @param storage store the data
-     * @throws DukeException the exceptions can happen in this program, to be handled based on the specific exception
+     * @throws DukeException the exceptions can happen in this function, to be handled based on the specific exception
      */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {

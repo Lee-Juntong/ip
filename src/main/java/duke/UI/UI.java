@@ -65,6 +65,20 @@ public class UI {
             System.out.println(numPrintedTasks + ". " + task.toString());
         }
     }
+    /**
+     * prints all the tasks of the filtered list with labels, based on the input list
+     *
+     * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
+     */
+    public void printFilteredTaskList(ArrayList<Task> tasks){
+        int numPrintedTasks = 0;
+
+        System.out.println(" Here are the matching tasks in your list:");
+        for (Task task : tasks) {
+            numPrintedTasks++;
+            System.out.println(numPrintedTasks + ". " + task.toString());
+        }
+    }
 
     /**
      * shows the error message when experiencing exceptions

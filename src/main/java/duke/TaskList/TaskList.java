@@ -6,6 +6,8 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * contains the list of the tasks and provides ways to delete/add/mark as done tasks
  */
@@ -83,5 +85,18 @@ public class TaskList {
      */
     public Task get(int taskIndex) {
         return tasks.get(taskIndex);
+    }
+
+    /**
+     * Filter the task list to find whether the list contains the information looking for by the user
+     * @param filterString the key word that the user is looking for
+     * @return the filtered list. this list contains only the tasks that satisfy the requirement
+     */
+    public ArrayList<Task> filterWith(String filterString) {
+        ArrayList<Task> filteredTaskList=(ArrayList<Task>) tasks.stream()
+                .filter(s -> s.getDescription().contains(filterString))
+                .collect(toList());
+
+        return filteredTaskList;
     }
 }

@@ -46,6 +46,14 @@ public abstract class Task {
     public String toString() {
         return "[" + getStatusIcon() + "]" + description;
     }
+
+    /**
+     * Provides the String variable of the description of this task
+     * @return the description of this task
+     */
+    public String getDescription(){
+        return description;
+    }
 }
 
 
