@@ -1,4 +1,5 @@
 package duke.exception;
+
 /**
  * Represents the case when the user types find but do not specify
  * the key word

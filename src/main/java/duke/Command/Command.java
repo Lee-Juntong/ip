@@ -6,10 +6,11 @@ import duke.UI.UI;
 import duke.exception.DukeException;
 
 /**
- *  Represents the command to be executed
+ * Represents the command to be executed
  */
 public abstract class Command {
     protected boolean isExit = false;
+
     /**
      * Execute the command based on the specific command type
      *

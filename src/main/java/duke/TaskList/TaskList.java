@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
  * Contains the list of the tasks and provides ways to delete/add/mark as done tasks
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     /**
      * Construct the tasks as an empty ArrayList
@@ -42,6 +42,7 @@ public class TaskList {
 
     /**
      * Mark a task as done
+     *
      * @param taskIndex the index of the task being done
      * @throws DoneUndefinedTaskException the task is not defined but the user want to mark it as done
      */
@@ -71,10 +72,9 @@ public class TaskList {
 
     /**
      * Remove the task indicated by the user
-     *
      */
     public void remove(int taskIndex) {
-            tasks.remove(taskIndex);
+        tasks.remove(taskIndex);
     }
 
     /**
@@ -89,11 +89,12 @@ public class TaskList {
 
     /**
      * Filter the task list to find whether the list contains the information looking for by the user
+     *
      * @param filterString the key word that the user is looking for
      * @return the filtered list. this list contains only the tasks that satisfy the requirement
      */
     public ArrayList<Task> filterWith(String filterString) {
-        ArrayList<Task> filteredTaskList=(ArrayList<Task>) tasks.stream()
+        ArrayList<Task> filteredTaskList = (ArrayList<Task>) tasks.stream()
                 .filter(s -> s.getDescription().contains(filterString))
                 .collect(toList());
 

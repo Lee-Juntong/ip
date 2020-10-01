@@ -10,7 +10,7 @@ import duke.task.Task;
  * Represents the command call when the user adds some task
  */
 public class AddCommand extends Command {
-    private Task taskToBeAdded;
+    private final Task taskToBeAdded;
 
 
     public AddCommand(Task taskToBeAdded) {

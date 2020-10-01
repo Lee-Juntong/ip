@@ -9,6 +9,7 @@ public class Todo extends Task {
     public Todo(String description) {
         super(description);
     }
+
     /**
      * Convert the information about this Todo to a string that is to be stored in a file
      *
@@ -17,6 +18,7 @@ public class Todo extends Task {
     public String fileString() {
         return "T//" + (isDone ? 1 : 0) + "//" + description;
     }
+
     /**
      * Prepare the string to be printed in the list
      *

@@ -9,12 +9,13 @@ import duke.exception.DukeException;
 /**
  * Represents the command call when the user deletes some task
  */
-public class DeleteCommand extends Command{
-    private int taskIndex;
+public class DeleteCommand extends Command {
+    private final int taskIndex;
 
     public DeleteCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
+
     /**
      * Delete the task, and update the file
      *
@@ -26,7 +27,7 @@ public class DeleteCommand extends Command{
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
         if (taskIndex <= -1 || taskIndex >= tasks.size()) {
-            throw new DeleteUndefinedTaskException(taskIndex+1);
+            throw new DeleteUndefinedTaskException(taskIndex + 1);
         }
         ui.printDeleteMessage(tasks.get(taskIndex));
         tasks.remove(taskIndex);

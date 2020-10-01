@@ -12,9 +12,9 @@ import duke.exception.DukeException;
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private UI ui;
+    private final UI ui;
 
     public Duke(String filePath) {
         ui = new UI();

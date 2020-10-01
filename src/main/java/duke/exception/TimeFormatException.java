@@ -1,4 +1,5 @@
 package duke.exception;
+
 /**
  * Represents the exception happens when the user trying to create an Event or a Deadline
  * but the time is not given in the correct format

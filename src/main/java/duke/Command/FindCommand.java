@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 public class FindCommand extends Command {
-    private String filterString;
+    private final String filterString;
 
     public FindCommand(String filterString) {
         this.filterString = filterString;
@@ -29,7 +29,7 @@ public class FindCommand extends Command {
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
 
         ArrayList<Task> filteredTaskList = tasks.filterWith(filterString);
-        if (filteredTaskList.size()==0){
+        if (filteredTaskList.size() == 0) {
             throw new NoMatchingTaskException();
         }
         ui.printFilteredTaskList(filteredTaskList);

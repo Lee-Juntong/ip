@@ -11,7 +11,7 @@ public class LoadingException extends DukeException {
      *
      * @return the message
      */
-    public String getMessage(){
+    public String getMessage() {
         return "You edit the file in a wrong format. Please check.";
     }
 }

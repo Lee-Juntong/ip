@@ -10,7 +10,7 @@ import duke.exception.DukeException;
  * Represents the command call when the user mark a task as done
  */
 public class DoneCommand extends Command {
-    private int taskIndex;
+    private final int taskIndex;
 
     public DoneCommand(int taskIndex) {
         this.taskIndex = taskIndex;
@@ -27,7 +27,7 @@ public class DoneCommand extends Command {
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws DukeException {
         if (taskIndex <= -1 || taskIndex >= tasks.size()) {
-            throw new DoneUndefinedTaskException(taskIndex+1);
+            throw new DoneUndefinedTaskException(taskIndex + 1);
         }
         tasks.doneTask(taskIndex);
         ui.printDoneMessage(tasks.get(taskIndex));

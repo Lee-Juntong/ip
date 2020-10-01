@@ -1,4 +1,5 @@
 package duke.exception;
+
 /**
  * Represents the case when the user want to create an empty Event
  */
@@ -8,7 +9,7 @@ public class EmptyEventException extends EventException {
      *
      * @return the message
      */
-    public String getMessage(){
+    public String getMessage() {
         return "☹ OOPS!!! The description of an event cannot be empty.";
     }
 }

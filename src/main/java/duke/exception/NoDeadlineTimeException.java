@@ -7,9 +7,10 @@ package duke.exception;
 public class NoDeadlineTimeException extends DeadlineException {
     /**
      * Prepare the message to be printed when this exception is experienced
+     *
      * @return the message
      */
-    public String getMessage(){
+    public String getMessage() {
         return "☹ OOPS!!! You should enter a time for deadline.";
     }
 }

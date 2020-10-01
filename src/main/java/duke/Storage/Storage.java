@@ -1,5 +1,6 @@
 package duke.Storage;
 
+import duke.exception.CreatingFileException;
 import duke.exception.LoadingException;
 import duke.exception.TimeFormatException;
 import duke.exception.WritingFileException;
@@ -24,14 +25,14 @@ import java.util.Scanner;
  */
 public class Storage {
     public static final String REGEX_IN_FILE = "//";
-    private String filePath;
+    private final String filePath;
 
     /**
      * Set the <code>filepath </code> according to the user input
      *
      * @param filePath is the path of the file
      */
-    public Storage(String filePath) {
+    public Storage(String filePath) throws CreatingFileException {
         this.filePath = filePath;
         createFolderAndFIle(filePath);
     }
@@ -41,12 +42,17 @@ public class Storage {
      *
      * @param filePath the String of the relative path
      */
-    private static void createFolderAndFIle(String filePath) {
+    private static void createFolderAndFIle(String filePath) throws CreatingFileException {
+        File dataFile = new File(filePath);
+        File directory = dataFile.getParentFile();
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
 
         try {
-            new File(filePath).createNewFile();
+            dataFile.createNewFile();
         } catch (IOException e) {
-            System.out.println("The file \"" + filePath + "\" is not created");
+            throw new CreatingFileException(filePath);
         }
     }
 

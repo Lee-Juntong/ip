@@ -1,4 +1,5 @@
 package duke.exception;
+
 /**
  * Represents the exception happens when the user trying to create a Deadline
  * without using \by to give it a time
@@ -9,7 +10,7 @@ public class NoDeadlineTimeMarkerException extends DeadlineException {
      *
      * @return the message
      */
-    public String getMessage(){
+    public String getMessage() {
         return "☹ OOPS!!! You should mark the time for a deadline with \"/by\"";
     }
 }

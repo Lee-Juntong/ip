@@ -64,7 +64,7 @@ public abstract class Parser {
         String[] words = fullCommand.split(SINGLE_SPACE);
 
         //this block deals with find command
-        if(words[0].equals(TASK_FIND)){
+        if (words[0].equals(TASK_FIND)) {
             if (fullCommand.substring(4).isBlank()) {
                 throw new EmptyFindException();
             }
