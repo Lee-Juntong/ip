@@ -23,7 +23,7 @@ This application aims to help the user store tasks and trace the status of tasks
 ### Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-1. Download the latest `DUKE.jar` from [here](https://github.com/Lee-Juntong/ip/releases/tag/v0.2).
+1. Download the latest `DUKE.jar` from [here](https://github.com/Lee-Juntong/ip/releases/tag/v0.3).
 1. Copy the file to the folder you want to use as the home folder for your *Duke*.
 1. Open the terminal in this folder. Type `java -jar Duke.jar` and press enter, to start this application.
 1. Type the command in the terminal and press Enter to execute it.   
