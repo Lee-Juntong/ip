@@ -105,14 +105,14 @@ Exits the application.
 ---
 
 ### Command Summary
-ACTION | FORMAT & EXAMPLE
------------- | -------------
-Add Todo | `todo DESCRIPTION`  e.g.`todo do something`
-Add Event| `event DESCRIPTION /at TIME`   e.g.`event meeting /at 2020-10-01 13:00`
-Add Deadline| `deadline DESCRIPTION /by TIME`   e.g.`deadline submitting homework /by 2020-10-01 23:59`
-List Tasks|`list`
-Find Task|`find KEYWORD`   e.g.`find book`
-Delete Task|`delete INDEX`   e.g.`delete 1`
-Done Task|`done INDEX`   e.g.`done 1`
+ACTION           | FORMAT & EXAMPLE
+------------     | -------------
+Add Todo         | `todo DESCRIPTION`  e.g.`todo do something`
+Add Event        | `event DESCRIPTION /at TIME`   e.g.`event meeting /at 2020-10-01 13:00`
+Add Deadline     | `deadline DESCRIPTION /by TIME`   e.g.`deadline submitting homework /by 2020-10-01 23:59`
+List Tasks       |`list`
+Find Task        |`find KEYWORD`   e.g.`find book`
+Delete Task      |`delete INDEX`   e.g.`delete 1`
+Done Task        |`done INDEX`   e.g.`done 1`
 Find Task on Date|`date DATE`   e.g.`date 2020-10-01`
-Exit|`bye`
+Exit             |`bye`
