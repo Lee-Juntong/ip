@@ -87,15 +87,15 @@ Example:
 Prints all tasks in the list that happens on a certain date.  
 **Format**:`date DATE`  
 Example:  
-* `date 2020-10-01`
+* `date 2020-10-01`  
 
 #### Exit the Application: `bye`
 Exits the application.  
-**Format**:`bye`
+**Format**:`bye`  
 ---
 ### FAQ
 **Q**: How do I transfer my data to another Computer?  
-**A**: Install the app in the other computer and overwrite the data\tasks.txt file it creates with the file that contains your previous data.
+**A**: Install the app in the other computer and overwrite the data\tasks.txt file it creates with the file that contains your previous data.  
 ---
 ### Command Summary
 ACTION | FORMAT & EXAMPLE
