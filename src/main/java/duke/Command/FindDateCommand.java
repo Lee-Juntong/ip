@@ -3,15 +3,15 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DukeException;
-import duke.exception.NoTaskDateException;
-import duke.task.Task;
+import duke.Exception.DukeException;
+import duke.Exception.NoTaskDateException;
+import duke.Task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Represents the command call when the user want to find the tasks in certain date
+ * Represents the command call when the user want to find the tasks in certain date.
  */
 public class FindDateCommand extends Command {
     private final LocalDate date;
@@ -21,7 +21,7 @@ public class FindDateCommand extends Command {
     }
 
     /**
-     * Execute the command based on the specific command type
+     * Execute the command based on the specific command type.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

@@ -3,11 +3,11 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DeleteUndefinedTaskException;
-import duke.exception.DukeException;
+import duke.Exception.DeleteUndefinedTaskException;
+import duke.Exception.DukeException;
 
 /**
- * Represents the command call when the user deletes some task
+ * Represents the command call when the user deletes some task.
  */
 public class DeleteCommand extends Command {
     private final int taskIndex;
@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete the task, and update the file
+     * Delete the task, and update the file.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

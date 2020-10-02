@@ -1,14 +1,14 @@
 package duke.UI;
 
 
-import duke.task.Task;
+import duke.Task.Task;
 
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * UI receives all user inputs, and produces outputs show to the user
+ * UI receives all user inputs, and produces outputs show to the user.
  */
 public class UI {
 
@@ -26,7 +26,7 @@ public class UI {
     }
 
     /**
-     * Reads the user input line by line
+     * Reads the user input line by line.
      *
      * @return the string of the line
      */
@@ -35,7 +35,7 @@ public class UI {
     }
 
     /**
-     * Prints the logo of DUKE and greet the user
+     * Prints the logo of DUKE and greet the user.
      */
     public void printGreetingMessage() {
         printLine();
@@ -45,14 +45,14 @@ public class UI {
     }
 
     /**
-     * Prints the separator
+     * Prints the separator.
      */
     public void printLine() {
         System.out.println(LINE_DIVIDER);
     }
 
     /**
-     * Prints all the tasks with labels, based on the input list
+     * Prints all the tasks with labels, based on the input list.
      *
      * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
      */
@@ -67,7 +67,7 @@ public class UI {
     }
 
     /**
-     * Prints all the tasks of the filtered list with labels, based on the input list
+     * Prints all the tasks of the filtered list with labels, based on the input list.
      *
      * @param tasks an <\code>ArrayList</\code> of tasks to be printed one by one
      */
@@ -82,7 +82,7 @@ public class UI {
     }
 
     /**
-     * Shows the error message when experiencing exceptions
+     * Shows the error message when experiencing exceptions.
      *
      * @param message the message get from the error
      */
@@ -93,7 +93,7 @@ public class UI {
     /**
      * Shows the error message during loading. Since the general IO exception is
      * handled when executing the process, the error leads to this would be the file
-     * is edited in a wrong way
+     * is edited in a wrong way.
      */
     public void showLoadingError() {
         System.out.println("You edit the file in a wrong format. Please check.");
@@ -101,7 +101,7 @@ public class UI {
 
     /**
      * Prints the message during executing commands.
-     * This function is used to make all printing being done in UI
+     * This function is used to make all printing being done in UI.
      *
      * @param message determined by the command
      */
@@ -117,7 +117,7 @@ public class UI {
     }
 
     /**
-     * Take in a size and prints the total number of tasks
+     * Take in a size and prints the total number of tasks.
      *
      * @param size get by calling <code>ArrayList<Task>::Size()</code>
      */
@@ -126,7 +126,7 @@ public class UI {
     }
 
     /**
-     * Prints the message when the user mark some task as done
+     * Prints the message when the user mark some task as done.
      *
      * @param task the task being done
      */
@@ -136,7 +136,7 @@ public class UI {
     }
 
     /**
-     * Prints the message when the user deletes some task
+     * Prints the message when the user deletes some task.
      *
      * @param task the task being deleted
      */
@@ -146,7 +146,7 @@ public class UI {
     }
 
     /**
-     * Prints the message when the user adds some task
+     * Prints the message when the user adds some task.
      *
      * @param taskAdded the task being added
      */
@@ -155,7 +155,7 @@ public class UI {
         System.out.println(taskAdded.toString());
     }
     /**
-     * Prints all the tasks of the filtered list with labels, based on the input list
+     * Prints all the tasks of the filtered list with labels, based on the input list.
      *
      * @param filteredTaskList an <\code>ArrayList</\code> of tasks to be printed one by one
      */

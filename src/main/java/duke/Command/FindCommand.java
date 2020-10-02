@@ -3,14 +3,14 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DukeException;
-import duke.exception.NoMatchingTaskException;
-import duke.task.Task;
+import duke.Exception.DukeException;
+import duke.Exception.NoMatchingTaskException;
+import duke.Task.Task;
 
 import java.util.ArrayList;
 
 /**
- * Represents the command call when the user want to find the tasks having a certain keyword
+ * Represents the command call when the user want to find the tasks having a certain keyword.
  */
 public class FindCommand extends Command {
     private final String filterString;
@@ -20,7 +20,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Find the tasks having the keyword provided by the user, and print that filtered list
+     * Find the tasks having the keyword provided by the user, and print that filtered list.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

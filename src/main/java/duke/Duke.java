@@ -5,8 +5,8 @@ import duke.Parser.Parser;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.CreatingFileException;
-import duke.exception.DukeException;
+import duke.Exception.CreatingFileException;
+import duke.Exception.DukeException;
 
 /**
  * Entry point of the Duke application.

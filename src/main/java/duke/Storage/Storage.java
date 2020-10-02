@@ -1,13 +1,12 @@
 package duke.Storage;
 
-import duke.exception.CreatingFileException;
-import duke.exception.LoadingException;
-import duke.exception.TimeFormatException;
-import duke.exception.WritingFileException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import duke.Exception.CreatingFileException;
+import duke.Exception.LoadingException;
+import duke.Exception.WritingFileException;
+import duke.Task.Deadline;
+import duke.Task.Event;
+import duke.Task.Task;
+import duke.Task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,16 +18,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * This class creates the folder and file path if it's not already created
- * prepare the data in the file to be used
- * writes data when exit
+ * This class creates the folder and file path if it's not already created, and
+ * prepare the data in the file to be used.
  */
 public class Storage {
     public static final String REGEX_IN_FILE = "//";
     private final String filePath;
 
     /**
-     * Set the <code>filepath </code> according to the user input
+     * Set the <code>filepath </code> according to the user input.
      *
      * @param filePath is the path of the file
      */
@@ -38,7 +36,7 @@ public class Storage {
     }
 
     /**
-     * Creates the folder and file if not already crated
+     * Creates the folder and file if not already crated.
      *
      * @param filePath the String of the relative path
      */
@@ -56,15 +54,9 @@ public class Storage {
         }
     }
 
-    /**
-     * @return the path of the file
-     */
-    public String getFilePath() {
-        return filePath;
-    }
 
     /**
-     * Save the data of the task list to the file
+     * Save the data of the task list to the file.
      *
      * @param tasks the list of tasks provided by a variable from a TaskList object
      * @throws WritingFileException represents the file is not correctly written
@@ -83,7 +75,7 @@ public class Storage {
     }
 
     /**
-     * Prepares the data in the file as an ArrayList, which is used to construct the TaskList
+     * Prepares the data in the file as an ArrayList, which is used to construct the TaskList.
      *
      * @return the tasks in an ArrayList
      * @throws LoadingException represents the <code>tasks</code> is not correctly created

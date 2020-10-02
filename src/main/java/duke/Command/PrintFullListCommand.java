@@ -3,12 +3,12 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DukeException;
+import duke.Exception.DukeException;
 
 public class PrintFullListCommand extends Command {
 
     /**
-     * Prints the list of tasks
+     * Prints the list of tasks.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

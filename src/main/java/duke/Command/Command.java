@@ -3,16 +3,16 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DukeException;
+import duke.Exception.DukeException;
 
 /**
- * Represents the command to be executed
+ * Represents the command to be executed.
  */
 public abstract class Command {
     protected boolean isExit = false;
 
     /**
-     * Execute the command based on the specific command type
+     * Execute the command based on the specific command type.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

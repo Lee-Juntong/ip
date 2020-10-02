@@ -3,11 +3,11 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DoneUndefinedTaskException;
-import duke.exception.DukeException;
+import duke.Exception.DoneUndefinedTaskException;
+import duke.Exception.DukeException;
 
 /**
- * Represents the command call when the user mark a task as done
+ * Represents the command call when the user mark a task as done.
  */
 public class DoneCommand extends Command {
     private final int taskIndex;
@@ -17,7 +17,7 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * Mark the task as done, and update the file
+     * Mark the task as done, and update the file.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

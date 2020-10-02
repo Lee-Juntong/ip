@@ -3,11 +3,11 @@ package duke.Command;
 import duke.Storage.Storage;
 import duke.TaskList.TaskList;
 import duke.UI.UI;
-import duke.exception.DukeException;
-import duke.task.Task;
+import duke.Exception.DukeException;
+import duke.Task.Task;
 
 /**
- * Represents the command call when the user adds some task
+ * Represents the command call when the user adds some task.
  */
 public class AddCommand extends Command {
     private final Task taskToBeAdded;
@@ -18,7 +18,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds the task, and update the file
+     * Adds the task, and update the file.
      *
      * @param tasks   the list of tasks
      * @param ui      do outputs

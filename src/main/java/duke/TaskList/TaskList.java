@@ -1,8 +1,7 @@
 package duke.TaskList;
 
-import duke.exception.DeleteUndefinedTaskException;
-import duke.exception.DoneUndefinedTaskException;
-import duke.task.Task;
+import duke.Exception.DoneUndefinedTaskException;
+import duke.Task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,20 +9,20 @@ import java.util.ArrayList;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Contains the list of the tasks and provides ways to delete/add/mark as done tasks
+ * Contains the list of the tasks and provides ways to delete/add/mark as done tasks.
  */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
     /**
-     * Construct the tasks as an empty ArrayList
+     * Construct the tasks as an empty ArrayList.
      */
     public TaskList() {
         tasks = new ArrayList<Task>();
     }
 
     /**
-     * When loading from the file, create the list as provided in the file
+     * When loading from the file, create the list as provided in the file.
      *
      * @param tasks provided by <code>Storage::load()</code>
      * @see duke.Storage.Storage
@@ -33,7 +32,7 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the list
+     * Adds a task to the list.
      *
      * @param taskToBeAdded may be Todo/Event/Deadline based on the usage
      */
@@ -42,7 +41,7 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as done
+     * Mark a task as done.
      *
      * @param taskIndex the index of the task being done
      * @throws DoneUndefinedTaskException the task is not defined but the user want to mark it as done
@@ -56,7 +55,7 @@ public class TaskList {
     }
 
     /**
-     * Gives the access to the list of tasks
+     * Gives the access to the list of tasks.
      *
      * @return the <code>ArrayList<task></code> object to be printed
      */
@@ -72,7 +71,7 @@ public class TaskList {
     }
 
     /**
-     * Remove the task indicated by the user
+     * Remove the task indicated by the user.
      */
     public void remove(int taskIndex) {
         tasks.remove(taskIndex);
@@ -89,7 +88,7 @@ public class TaskList {
     }
 
     /**
-     * Filter the task list to find the tasks contain the information looking for by the user
+     * Filter the task list to find the tasks contain the information looking for by the user.
      *
      * @param filterString the keyword that the user is looking for
      * @return the filtered list. this list contains only the tasks that satisfy the requirement
@@ -102,7 +101,7 @@ public class TaskList {
         return filteredTaskList;
     }
     /**
-     * Filter the task list to find the tasks happen on the date looking for by the user
+     * Filter the task list to find the tasks happen on the date looking for by the user.
      *
      * @param date the date that the user is looking for
      * @return the filtered list. this list contains only the tasks that satisfy the requirement

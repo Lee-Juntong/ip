@@ -9,33 +9,33 @@ import duke.Command.ExitCommand;
 import duke.Command.FindCommand;
 import duke.Command.FindDateCommand;
 import duke.Command.PrintFullListCommand;
-import duke.exception.DateFormatException;
-import duke.exception.DeleteNumberFormatException;
-import duke.exception.DoneNumberFormatException;
-import duke.exception.DukeException;
-import duke.exception.EmptyDeadlineException;
-import duke.exception.EmptyDeleteException;
-import duke.exception.EmptyDoneException;
-import duke.exception.EmptyEventException;
-import duke.exception.EmptyFindDateException;
-import duke.exception.EmptyFindException;
-import duke.exception.EmptyTodoException;
-import duke.exception.NoDeadlineTimeException;
-import duke.exception.NoDeadlineTimeMarkerException;
-import duke.exception.NoEventTimeException;
-import duke.exception.NoEventTimeMakerException;
-import duke.exception.TimeFormatException;
-import duke.exception.WrongCommandException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Todo;
+import duke.Exception.DateFormatException;
+import duke.Exception.DeleteNumberFormatException;
+import duke.Exception.DoneNumberFormatException;
+import duke.Exception.DukeException;
+import duke.Exception.EmptyDeadlineException;
+import duke.Exception.EmptyDeleteException;
+import duke.Exception.EmptyDoneException;
+import duke.Exception.EmptyEventException;
+import duke.Exception.EmptyFindDateException;
+import duke.Exception.EmptyFindException;
+import duke.Exception.EmptyTodoException;
+import duke.Exception.NoDeadlineTimeException;
+import duke.Exception.NoDeadlineTimeMarkerException;
+import duke.Exception.NoEventTimeException;
+import duke.Exception.NoEventTimeMakerException;
+import duke.Exception.TimeFormatException;
+import duke.Exception.WrongCommandException;
+import duke.Task.Deadline;
+import duke.Task.Event;
+import duke.Task.Todo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * This class contains one function -- parse, to call the respective command function according to the user input
+ * This class contains one function -- parse, to call the respective command function according to the user input.
  */
 public abstract class Parser {
     public static final String EXIT = "bye";
@@ -52,7 +52,7 @@ public abstract class Parser {
     private static final String TASK_FIND_DATE = "date";
 
     /**
-     * This function calls the correct command the user want to perform, by returning a <\code>Command</\code> object
+     * This function calls the correct command the user want to perform, by returning a <\code>Command</\code> object.
      *
      * @param fullCommand the full string of user input
      * @return the specific <\code>Command</\code> object to perform what the user want to do
