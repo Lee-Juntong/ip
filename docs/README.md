@@ -17,8 +17,8 @@ This application aims to help the user store tasks and trace the status of tasks
 [**FAQ**](#faq)  
 [**Command Summary**](#command-summary)
  
-
 ---
+
 ### Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -31,8 +31,10 @@ This application aims to help the user store tasks and trace the status of tasks
     * `list` : Lists all tasks.
     * `find homework` : Prints all tasks having the keyword in the description
     * `bye` : Exits the application.
-1. Refer to the [Features](#features) below for details of each command.    
+1. Refer to the [Features](#features) below for details of each command. 
+   
 ---
+
 ### Features
 ###### Notes about the command format:
 
@@ -92,11 +94,15 @@ Example:
 #### Exit the Application: `bye`
 Exits the application.  
 **Format**:`bye`  
+
 ---
+
 ### FAQ
 **Q**: How do I transfer my data to another Computer?  
-**A**: Install the app in the other computer and overwrite the data\tasks.txt file it creates with the file that contains your previous data.  
+**A**: Install the app in the other computer and overwrite the data\tasks.txt file it creates with the file that contains your previous data.
+  
 ---
+
 ### Command Summary
 ACTION | FORMAT & EXAMPLE
 ------------ | -------------
