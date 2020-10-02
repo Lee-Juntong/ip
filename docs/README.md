@@ -14,6 +14,7 @@ This application aims to help the user store tasks and trace the status of tasks
 * [Done Task: `done`](#done-task-done)
 * [Exit the Application: `bye`](#exit-the-application-bye)
 * [Find Tasks on Date: `date`](#find-tasks-on-date-date)  
+
 [**FAQ**](#faq)  
 [**Command Summary**](#command-summary)
  
