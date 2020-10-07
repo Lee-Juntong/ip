@@ -65,7 +65,7 @@ public class TaskList {
 
     /**
      * Returns how many tasks are in the list.
-     * 
+     *
      * @return the size of the ArrayList in the TaskList object
      */
     public int size() {
