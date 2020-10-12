@@ -120,7 +120,7 @@ public class Storage {
             }
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new LoadingException();
         }
         return tasks;
